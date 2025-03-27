@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3uwsovg8hbyd"]
+
+[ext_resource type="Environment" uid="uid://cb2586nrunvi2" path="res://SharedMaterials/WorldEnvironments/test_environment.tres" id="1_a1cac"]
+[ext_resource type="CameraAttributesPractical" uid="uid://d2jnmiyqg0la" path="res://SharedMaterials/CameraAttributes/test_camera.tres" id="2_765sp"]
+[ext_resource type="PackedScene" uid="uid://b17m6vjk47aot" path="res://SharedAssets/testing/test_floor.tscn" id="3_kuvpc"]
+[ext_resource type="PackedScene" uid="uid://cn8uaa7ec0t05" path="res://SharedAssets/testing/test_ramp.tscn" id="4_ati0d"]
+
+[node name="TestWorld1" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.911403, 0.343552, -0.226531, 0, 0.550481, 0.834848, 0.411514, 0.760883, -0.50171, 0, 5, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_a1cac")
+camera_attributes = ExtResource("2_765sp")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.439939, 0.314496, -0.841157, 0, 0.936672, 0.350207, 0.898028, 0.15407, -0.412079, -5.26637, 1.68411, -1.22628)
+
+[node name="TestFloor" parent="." instance=ExtResource("3_kuvpc")]
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 6, 0, 0, 0)
+
+[node name="TestFloor2" parent="." instance=ExtResource("3_kuvpc")]
+transform = Transform3D(3.5, 0, 0, 0, 1, 0, 0, 0, 3.5, -3.5, -0.2, 2)
+
+[node name="TestRamp" parent="." instance=ExtResource("4_ati0d")]
+transform = Transform3D(-2, 0, 1.50996e-07, 0, 0.2, 0, -3.01992e-07, 0, -1, -4, -0.0522928, 2)
