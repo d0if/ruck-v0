@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b0alospdw6db3" path="res://Entities/test_bean/test_bean.gd" id="1_78lb1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1vdg3"]
-friction = 0.0
+friction = 0.1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8tlvj"]
 
