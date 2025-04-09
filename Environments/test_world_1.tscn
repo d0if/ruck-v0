@@ -11,6 +11,7 @@ script/source = "extends RichTextLabel
 
 func _process(delta: float) -> void:
 	self.text = str(Global.zoom_level)
+	self.text = self.text + \"\\n\" + str(Global.angle_walk.length())
 "
 
 [node name="TestWorld1" type="Node3D"]
@@ -43,9 +44,13 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+[node name="debuglabel" type="RichTextLabel" parent="Control"]
 layout_mode = 0
-offset_right = 113.0
-offset_bottom = 28.0
+offset_right = 1156.0
+offset_bottom = 645.0
+mouse_filter = 2
 text = "2.0"
+scroll_active = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
 script = SubResource("GDScript_ah1au")
