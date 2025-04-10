@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("game_jump"):
-		self.apply_central_impulse(Vector3(0.0, 5 * self.mass, 0.0))
+		self.apply_central_impulse(Vector3(0.0, 5 * self.mass * self.gravity_scale, 0.0))
 		
 	vel_target_2d = Global.get_horizontal_movement_from_keyboard()
 	vel_target_2d = vel_target_2d * move_speed

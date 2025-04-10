@@ -16,6 +16,7 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 0.121
 physics_material_override = SubResource("PhysicsMaterial_1vdg3")
+gravity_scale = 2.0
 script = ExtResource("1_78lb1")
 
 [node name="Collision" type="CollisionShape3D" parent="."]

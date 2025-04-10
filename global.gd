@@ -23,6 +23,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			zoom_float = zoom_float + 0.01
+		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			zoom_float = zoom_float - 0.01
+
 func _load_settings() -> Error:
 	#loads settings&makes sure that every field in settings_default is available
 	var _settings_default = ConfigFile.new()

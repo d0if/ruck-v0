@@ -13,6 +13,7 @@ config_version=5
 config/name="ruck-v0"
 run/main_scene="res://Environments/test_world_1.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
@@ -73,3 +74,7 @@ ui_tab={
 [layer_names]
 
 3d_render/layer_3="Player"
+
+[physics]
+
+common/physics_ticks_per_second=120
