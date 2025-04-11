@@ -2,6 +2,7 @@ extends RigidBody3D
 
 var angle_look: Vector2 = Vector2(0.0, 0.0)
 var move_speed: float = 10.0 #units/sec target
+var move_speed_target: float = 10.0
 
 const MOVE_SPEED_WALK = 10.0
 const MOVE_SPEED_SPRINT = 14.0
@@ -15,6 +16,7 @@ var contact_norm_2d: Vector2 = Vector2(1.0, 0.0) #no target_vel towards walls
 var contact_norm_3d: Vector3 = Vector3(0.0, 1.0, 0.0)
 const MAX_JUMP_ANGLE_RADS = 1.05*(PI/4.0) #limit of slopes that can be jumped on
 const MAX_CLIMB_ANGLE_RADS = 1.05*(PI/4.0)
+var holding_jump: bool = false
 
 func _ready() -> void:
 	pass
@@ -23,21 +25,33 @@ func _process(delta: float) -> void:
 	angle_look = Global.angle_look
 
 func _physics_process(delta: float) -> void:
+	
 	if Input.is_action_pressed("game_sprint"):
-		move_speed = move_speed + 0.1 * (MOVE_SPEED_SPRINT - move_speed)
+		move_speed_target = MOVE_SPEED_SPRINT
 	elif Input.is_action_pressed("game_crouch"):
-		move_speed = move_speed + 0.1 * (MOVE_SPEED_CROUCH - move_speed)
+		move_speed_target = MOVE_SPEED_CROUCH
 	else:
-		move_speed = move_speed + 0.1 * (MOVE_SPEED_WALK - move_speed)
+		move_speed_target = MOVE_SPEED_WALK
+	
+	move_speed = move_speed + 0.1 * (move_speed_target - move_speed)
 
+	
+	if holding_jump:
+		if not Input.is_action_pressed("game_jump"):
+			holding_jump = false
+		else:
+			if self.linear_velocity.y > 0:
+				#anti-gravity
+				self.apply_central_impulse(Vector3(0.0, 0.5, 0.0))
 	
 	#Press jump button, jump collider is in the ground, & you're touching a <45deg slope
 	if Input.is_action_just_pressed("game_jump") and (jump_collider.has_overlapping_bodies()) and (min_contact_pitch < MAX_JUMP_ANGLE_RADS):
-		var jump_impulse = Vector3(0.0, 5 * self.mass * self.gravity_scale, 0.0)
+		var jump_impulse = Vector3(0.0, 4 * self.mass * self.gravity_scale, 0.0)
 		#jump is normal to slope
 		jump_impulse = jump_impulse.dot(contact_norm_3d) * contact_norm_3d
 		self.apply_central_impulse(jump_impulse)
-		
+		holding_jump = true
+	
 	vel_target_2d = Global.get_horizontal_movement_from_keyboard()
 	vel_target_2d = vel_target_2d * move_speed
 	
@@ -46,8 +60,8 @@ func _physics_process(delta: float) -> void:
 	
 	var vel_error_3d = vel_target_3d - self.linear_velocity
 	var dot = Vector2(vel_error_3d.x, vel_error_3d.z).dot(contact_norm_2d)
-
-	if dot < 0: #if velocity is going into the slope:
+	
+	if self.get_contact_count() > 0 and dot < 0: #if velocity is going into the slope:
 		if min_contact_pitch > MAX_CLIMB_ANGLE_RADS: #slope is steep,
 			#cancel out towards-slope velocity
 			vel_error_3d.x = vel_error_3d.x - dot * contact_norm_2d.x
@@ -61,9 +75,8 @@ func _physics_process(delta: float) -> void:
 	#just for viewing walk speed in debug
 	Global.angle_walk = Vector2(self.linear_velocity.x, self.linear_velocity.z)
 	
-	
+	#slow down quicker if hands are off keyboard (maybe get rid of this)
 	var impulse_scale_rate = 10.0 if (vel_target_2d.length_squared() == 0.0) else 5.0
-	
 	#worse air control
 	if not jump_collider.has_overlapping_bodies():
 		impulse_scale_rate = impulse_scale_rate * 0.5
@@ -72,9 +85,8 @@ func _physics_process(delta: float) -> void:
 
 #get rid of motion on slopes & get contact info for elsewhere
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	min_contact_pitch = 0.0
-	contact_norm_2d = Vector2(1.0, 0.0)
-	contact_norm_3d = Vector3(0.0, 1.0, 0.0)
+	#contact_norm_2d = Vector2(1.0, 0.0)
+	#contact_norm_3d = Vector3(0.0, 1.0, 0.0)
 	if state.get_contact_count() > 0:
 		min_contact_pitch = 999.0
 		for contact_idx in range(0, state.get_contact_count()):
@@ -90,7 +102,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		if min_contact_pitch < MAX_CLIMB_ANGLE_RADS:
 			if state.linear_velocity.length_squared() < 0.1:
 				state.set_linear_velocity(Vector3(0.0, state.linear_velocity.y, 0.0))
-			
+
+
 
 
 func _unhandled_input(event: InputEvent) -> void:
