@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b0alospdw6db3" path="res://Entities/test_bean/test_bean.gd" id="1_78lb1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1vdg3"]
-friction = 0.2
+friction = 0.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8tlvj"]
 
@@ -17,9 +17,9 @@ collision_layer = 4
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
-mass = 0.121
+mass = 6.487
 physics_material_override = SubResource("PhysicsMaterial_1vdg3")
-gravity_scale = 2.0
+gravity_scale = 3.0
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_78lb1")
