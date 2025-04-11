@@ -7,6 +7,7 @@ var zoom_level = ZOOM_FP #use this for functionality
 var angle_look: Vector2
 var angle_walk: Vector2
 
+
 var settings = ConfigFile.new() #gets initialized by _load_settings()
 
 # Called when the node enters the scene tree for the first time.

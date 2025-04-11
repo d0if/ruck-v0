@@ -1,22 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://t3igcu5q0l4c"]
+[gd_scene load_steps=7 format=3 uid="uid://t3igcu5q0l4c"]
 
 [ext_resource type="PackedScene" uid="uid://bpompn6smaqds" path="res://Utility/Camera/first_person_camera.tscn" id="1_8tlvj"]
 [ext_resource type="Script" uid="uid://b0alospdw6db3" path="res://Entities/test_bean/test_bean.gd" id="1_78lb1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1vdg3"]
-friction = 0.1
+friction = 0.2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8tlvj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_78lb1"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_78lb1"]
+
 [node name="TestBean" type="RigidBody3D"]
+collision_layer = 4
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 0.121
 physics_material_override = SubResource("PhysicsMaterial_1vdg3")
 gravity_scale = 2.0
+contact_monitor = true
+max_contacts_reported = 10
 script = ExtResource("1_78lb1")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
@@ -29,3 +34,13 @@ skeleton = NodePath("../Collision")
 
 [node name="FirstPersonCamera" parent="." instance=ExtResource("1_8tlvj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.746, 0)
+
+[node name="JumpReset" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, 0)
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JumpReset"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("SphereShape3D_78lb1")
+
+[connection signal="body_entered" from="JumpReset" to="." method="_on_jump_reset_body_entered"]
