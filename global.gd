@@ -7,6 +7,10 @@ var zoom_level = ZOOM_FP #use this for functionality
 var angle_look: Vector2
 var angle_walk: Vector2
 
+var debug_text_physics: String = ""
+var debug_text_process: String = ""
+var debug_text_logging: Array = []
+var debug_duration_log: Array = []
 
 var settings = ConfigFile.new() #gets initialized by _load_settings()
 
@@ -69,6 +73,24 @@ func _load_settings() -> Error:
 		return FAILED
 		
 	return OK
+
+func debug_phys(label: String = "", value = ""):
+	debug_text_physics = debug_text_physics + "\n"
+	if label != "":
+		debug_text_physics = debug_text_physics + label + ": "
+	debug_text_physics = debug_text_physics + str(value)
+
+func debug(label: String = "", value = ""):
+	debug_text_process = debug_text_process + "\n"
+	if label != "":
+		debug_text_process = debug_text_process + label + ": "
+	debug_text_process = debug_text_process + str(value)
+
+func debug_log(value = "", duration: float = 2.0, label: String = ""):
+	var temp_debug_text = label + ": " if label != "" else ""
+	temp_debug_text = temp_debug_text + str(value)
+	debug_text_logging.push_front(temp_debug_text)
+	debug_duration_log.push_front(duration)
 
 func get_horizontal_movement_from_keyboard() -> Vector2:
 	var trial_angle = Vector2(0.0, 0.0) #x is right/left, y is forward/back

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ruck-v0"
-run/main_scene="res://Environments/test_world_1.tscn"
+run/main_scene="uid://xycmanbxay3k"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"

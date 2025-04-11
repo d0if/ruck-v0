@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://t3igcu5q0l4c"]
+[gd_scene load_steps=9 format=3 uid="uid://t3igcu5q0l4c"]
 
 [ext_resource type="PackedScene" uid="uid://bpompn6smaqds" path="res://Utility/Camera/first_person_camera.tscn" id="1_8tlvj"]
 [ext_resource type="Script" uid="uid://b0alospdw6db3" path="res://Entities/test_bean/test_bean.gd" id="1_78lb1"]
@@ -6,7 +6,13 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1vdg3"]
 friction = 0.5
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_78lb1"]
+height = 1.5
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8tlvj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mjw44"]
+radius = 0.49
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_78lb1"]
 
@@ -24,16 +30,25 @@ contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_78lb1")
 
-[node name="Collision" type="CollisionShape3D" parent="."]
+[node name="CollisionCrouch" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("CapsuleShape3D_78lb1")
+
+[node name="CollisionStand" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_8tlvj")
 
+[node name="StandUp" type="Area3D" parent="."]
+collision_layer = 4
+
+[node name="CollisionStandTaller" type="CollisionShape3D" parent="StandUp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+shape = SubResource("CapsuleShape3D_mjw44")
+
 [node name="Mesh" type="MeshInstance3D" parent="."]
+visible = false
 layers = 4
 mesh = SubResource("CapsuleMesh_78lb1")
-skeleton = NodePath("../Collision")
-
-[node name="FirstPersonCamera" parent="." instance=ExtResource("1_8tlvj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.746, 0)
+skeleton = NodePath("../CollisionStand")
 
 [node name="JumpReset" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.179764, 0)
@@ -43,4 +58,9 @@ collision_layer = 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("SphereShape3D_78lb1")
 
+[node name="FirstPersonCamera" parent="." instance=ExtResource("1_8tlvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.746, 0)
+
+[connection signal="height_changed" from="." to="." method="_on_height_changed"]
+[connection signal="height_changed" from="." to="FirstPersonCamera" method="_on_test_bean_height_changed"]
 [connection signal="body_entered" from="JumpReset" to="." method="_on_jump_reset_body_entered"]

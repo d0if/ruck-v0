@@ -3,6 +3,10 @@ extends Node3D
 const ANGLE_SPRING: float = (PI/2.0)*(5.0/6.0)
 const ANGLE_MAX: float = ANGLE_SPRING * 2.0
 
+const WALK_HEIGHT = 0.0
+const CROUCH_HEIGHT = -0.5
+
+var height_tween: Tween
 
 @onready var gimbal = $Gimbal
 @onready var camera = $Gimbal/Camera
@@ -46,3 +50,12 @@ func camera_spring(pitch: float, springiness: float) -> float:
 			pitch = -ANGLE_MAX
 	
 	return pitch
+
+
+func _on_test_bean_height_changed(is_short: bool) -> void:
+	if height_tween:
+		height_tween.kill()
+	
+	height_tween = create_tween()
+	var new_location = Vector3(0.0, CROUCH_HEIGHT if is_short else WALK_HEIGHT, 0.0)
+	height_tween.tween_property(gimbal, "position", new_location, 0.1)
