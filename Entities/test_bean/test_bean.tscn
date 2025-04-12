@@ -18,7 +18,7 @@ radius = 0.49
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_78lb1"]
 
-[node name="TestBean" type="RigidBody3D"]
+[node name="TestRucker" type="RigidBody3D"]
 collision_layer = 4
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -45,7 +45,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
 shape = SubResource("CapsuleShape3D_mjw44")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-visible = false
 layers = 4
 mesh = SubResource("CapsuleMesh_78lb1")
 skeleton = NodePath("../CollisionStand")

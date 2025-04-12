@@ -8,5 +8,4 @@ script = ExtResource("1_0f7n8")
 [node name="Gimbal" type="Node3D" parent="."]
 
 [node name="Camera" type="Camera3D" parent="Gimbal"]
-cull_mask = 1048571
 current = true

@@ -8,6 +8,7 @@ const MOVE_SPEED_WALK = 10.0
 const MOVE_SPEED_SPRINT = 14.0
 const MOVE_SPEED_CROUCH = 4.0
 const MOVE_SPEED_CROUCHSPRINT = 8.0
+const MOVE_SPEED_CROUCHSLIDE = 17.0
 
 const CROUCH_SLIDE_THRESHOLD = 6.0 #how fast in order to start crouchslide
 
@@ -20,18 +21,25 @@ const MAX_JUMP_ANGLE_RADS = 1.05*(PI/4.0) #limit of slopes that can be jumped on
 const MAX_CLIMB_ANGLE_RADS = 1.05*(PI/4.0)
 var holding_jump: bool = false
 var crouch_sliding: bool = false
+var crouchslide_jumping: bool = false
 var short: bool = false
 
 @onready var stand_hitbox = $CollisionStand
 @onready var crouch_hitbox = $CollisionCrouch
 signal height_changed(is_short: bool)
-signal mvt_style_changed(target_speed: float)
+signal mvt_speed_changed(target_speed: float)
+
+var mvt_anim_old: StringName = "Standing Idle"
+signal mvt_anim_changed(new_anim: StringName)
 
 func _ready() -> void:
 	pass
 	
 func _process(delta: float) -> void:
 	angle_look = Global.angle_look
+	
+	if Input.is_action_just_pressed("game_jump"):
+		update_animation_state()
 
 func _physics_process(delta: float) -> void:
 	
@@ -47,7 +55,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			move_speed_target = MOVE_SPEED_WALK
 	
-	if not crouch_sliding:
+	if not (crouch_sliding or crouchslide_jumping):
 		move_speed = move_speed + 0.1 * (move_speed_target - move_speed)
 	#else: #only decay move speed if going uphill
 		#move_speed = move_speed * 0.997
@@ -57,25 +65,27 @@ func _physics_process(delta: float) -> void:
 	if holding_jump:
 		if not Input.is_action_pressed("game_jump"):
 			holding_jump = false
+			crouchslide_jumping = false #all csj's are holding_jumps but not viceversa so ok to not check above
 		else:
 			if self.linear_velocity.y > 0:
 				#anti-gravity
-				self.apply_central_impulse(Vector3(0.0, 0.5, 0.0))
+				self.apply_central_impulse(Vector3(0.0, self.mass * self.gravity_scale * 0.02, 0.0))
 	
 	if Input.is_action_pressed("game_crouch"):
 		if not short:
 			height_changed.emit(true) #change height to short
 		if self.linear_velocity.y < 0:
 			if self.get_contact_count() == 0:
-				#extra gravity
-				self.apply_central_impulse(Vector3(0.0, -0.75, 0.0))
+				if not crouchslide_jumping:
+					#extra gravity
+					self.apply_central_impulse(Vector3(0.0, -self.mass * self.gravity_scale * 0.05, 0.0))
 			
 			#try to start sliding
 			if not crouch_sliding:
 				if self.linear_velocity.length_squared() > CROUCH_SLIDE_THRESHOLD * CROUCH_SLIDE_THRESHOLD:
 					if jump_collider.has_overlapping_bodies():
 						crouch_sliding = true
-						move_speed = min(self.linear_velocity.length() * 1.2, MOVE_SPEED_SPRINT * 1.2)
+						move_speed = min(self.linear_velocity.length() * 1.2, MOVE_SPEED_CROUCHSLIDE)
 						self.physics_material_override.friction = 0.0
 	
 	else: #not holding crouch, try to get tall
@@ -95,16 +105,8 @@ func _physics_process(delta: float) -> void:
 
 	Global.debug_phys("crouch_sliding", crouch_sliding)
 	
-	#Press jump button, jump collider is in the ground, & you're touching a <45deg slope
-	if Input.is_action_just_pressed("game_jump") and (jump_collider.has_overlapping_bodies()) and (min_contact_pitch < MAX_JUMP_ANGLE_RADS):
-		var jump_impulse = Vector3(0.0, 4 * self.mass * self.gravity_scale, 0.0)
-		#jump is normal to slope
-		jump_impulse = jump_impulse.dot(contact_norm_3d) * contact_norm_3d
-		self.apply_central_impulse(jump_impulse)
-		holding_jump = true
-	
 	var vel_target_2d = Global.get_horizontal_movement_from_keyboard()
-	if crouch_sliding: vel_target_2d = Vector2(0.0, 1.0)
+	if crouch_sliding: vel_target_2d = Vector2(0.0, 1.0) #ignore left/right/back when cs
 	vel_target_2d = vel_target_2d * move_speed
 	
 	var vel_target_3d = Vector3(vel_target_2d.x, self.linear_velocity.y, -vel_target_2d.y)
@@ -129,6 +131,28 @@ func _physics_process(delta: float) -> void:
 	
 	#just for viewing walk speed in debug
 	Global.angle_walk = Vector2(self.linear_velocity.x, self.linear_velocity.z)
+	
+	#Press jump button, jump collider is in the ground, & you're touching a <45deg slope
+	if Input.is_action_just_pressed("game_jump") and (jump_collider.has_overlapping_bodies()) and (min_contact_pitch < MAX_JUMP_ANGLE_RADS):
+			
+		var jump_impulse = Vector3(0.0, 4 * self.mass * self.gravity_scale, 0.0)
+		#jump is normal to slope
+		var jump_impulse_normal = jump_impulse.dot(contact_norm_3d) * contact_norm_3d
+		self.apply_central_impulse(jump_impulse_normal)
+		holding_jump = true
+		if crouch_sliding:
+			var linear_velocity_norm = Vector3(self.linear_velocity.x, 0.0, self.linear_velocity.z).normalized()
+			linear_velocity_norm = linear_velocity_norm.rotated(self.linear_velocity.cross(contact_norm_3d), PI/4.0)
+			var jump_impulse_with = jump_impulse.dot(linear_velocity_norm) * linear_velocity_norm
+			self.apply_central_impulse(jump_impulse_with)
+			crouchslide_jumping = true
+			move_speed = self.linear_velocity.length()
+	
+	#stop crouchslide_jumping after you land
+	if jump_collider.has_overlapping_bodies() and self.linear_velocity.y < 0:
+		crouchslide_jumping = false
+		
+	Global.debug_phys("cs_jumping", crouchslide_jumping)
 	
 	#slow down quicker if hands are off WASD (maybe get rid of this)
 	var impulse_scale_rate = 10.0 if (vel_target_2d.length_squared() == 0.0) else 5.0
@@ -165,3 +189,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_height_changed(is_short: bool) -> void:
 	stand_hitbox.disabled = is_short
 	crouch_hitbox.disabled = not is_short
+
+func update_animation_state() -> void:
+	#figure_out_animation_state
+	var mvt_anim: StringName = "Jump" if mvt_anim_old != "Jump" else "Standing Idle"
+	#if animation_state != old_animation_state:
+	mvt_anim_changed.emit(mvt_anim)
+
+	pass
