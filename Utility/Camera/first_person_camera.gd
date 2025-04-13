@@ -38,6 +38,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		Global.angle_look.y = Global.angle_look.y + event.screen_relative.y * Global.settings.get_value("mouse", "sensitivity").y
 	elif event is InputEventJoypadMotion:
 		pass
+	
+	if Global.angle_look.x < 0:
+		Global.angle_look.x += 2.0*PI
+	if Global.angle_look.x >= 2.0*PI:
+		Global.angle_look.x -= 2.0*PI
+
 
 func camera_spring(pitch: float, springiness: float) -> float:
 	if pitch > ANGLE_SPRING:
@@ -57,5 +63,5 @@ func _on_test_bean_height_changed(is_short: bool) -> void:
 		height_tween.kill()
 	
 	height_tween = create_tween()
-	var new_location = Vector3(0.0, CROUCH_HEIGHT if is_short else WALK_HEIGHT, 0.0)
-	height_tween.tween_property(gimbal, "position", new_location, 0.1)
+	var new_location = CROUCH_HEIGHT if is_short else WALK_HEIGHT
+	height_tween.tween_property(gimbal, "position:y", new_location, 0.1)

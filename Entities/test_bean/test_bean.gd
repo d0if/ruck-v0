@@ -24,22 +24,24 @@ var crouch_sliding: bool = false
 var crouchslide_jumping: bool = false
 var short: bool = false
 
+@onready var rucker = $Rucker
+
 @onready var stand_hitbox = $CollisionStand
 @onready var crouch_hitbox = $CollisionCrouch
 signal height_changed(is_short: bool)
 signal mvt_speed_changed(target_speed: float)
 
-var mvt_anim_old: StringName = "Standing Idle"
-signal mvt_anim_changed(new_anim: StringName)
+var mvt_style_old: StringName = "RESET"
+signal mvt_style_changed(new_anim: StringName)
 
 func _ready() -> void:
 	pass
 	
 func _process(delta: float) -> void:
 	angle_look = Global.angle_look
-	
-	if Input.is_action_just_pressed("game_jump"):
-		update_animation_state()
+	if rucker: rucker.rotation.y = PI - angle_look.x
+	Global.debug("angle_look", angle_look)
+	update_animation_state()
 
 func _physics_process(delta: float) -> void:
 	
@@ -160,6 +162,7 @@ func _physics_process(delta: float) -> void:
 	if not jump_collider.has_overlapping_bodies():
 		impulse_scale_rate = impulse_scale_rate * 0.5
 	self.apply_central_impulse(impulse_scale_rate * vel_error_3d * delta * self.mass)
+	Global.debug_phys("linear_velocity", self.linear_velocity)
 
 #get rid of motion on slopes & get contact info for elsewhere
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
@@ -187,13 +190,38 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_height_changed(is_short: bool) -> void:
+	short = is_short
 	stand_hitbox.disabled = is_short
 	crouch_hitbox.disabled = not is_short
 
 func update_animation_state() -> void:
-	#figure_out_animation_state
-	var mvt_anim: StringName = "Jump" if mvt_anim_old != "Jump" else "Standing Idle"
-	#if animation_state != old_animation_state:
-	mvt_anim_changed.emit(mvt_anim)
+	#possible movement (animation) states:
+	#idle, walk_front/back/left/right, crouched, crouch_front (no back/left/right yet),
+	#jumped, flying, landed, run_front/back (no left/right yet), sliding
+	var mvt_style = "UNSET"
+	if self.linear_velocity.length_squared() <= 0.5: 
+		#idle if no movement & not crouching
+		mvt_style = "idle"
+		if short:
+			#no mvt & crouching
+			mvt_style = "crouched"
+	else: #fast movement
+		if self.get_contact_count() == 0 and (not jump_collider.has_overlapping_bodies()): #airborne
+			mvt_style = "flying"
+		else: #touching the ground for real
+			if crouch_sliding:
+				mvt_style = "sliding"
+			elif Input.is_action_pressed("game_sprint"):
+				mvt_style = "run_front"
+			elif short:
+				mvt_style = "crouch_front"
+			else:
+				mvt_style = "walk_front"
+		
 
-	pass
+	
+	#figure_out_animation_state
+	#if animation_state != old_animation_state:
+	if mvt_style != mvt_style_old:
+		mvt_style_changed.emit(mvt_style)
+	mvt_style_old = mvt_style
