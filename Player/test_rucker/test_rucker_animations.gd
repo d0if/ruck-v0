@@ -7,7 +7,9 @@ const CROUCH_HEIGHT = -1.55
 var emoting = false
 var traversal_emote = false
 
-@onready var animator = $AnimationPlayer
+@onready var rootedAnimator = $AnimationPlayerRooted
+@onready var unrootedAnimator = $AnimationPlayerUnrooted
+
 var animations: PackedStringArray = ["RESET", "Crouch Idle", "Crouch Walk", "Crouch to Stand", 
 		"Fall", "Happy Idle", "Joyful Jump", "Jump", "Land", "Macarena", 
 		"Run Backwards", "Run Forward", "Run Jump", "Slide", "RESET", #note "Standing Idle" renamed to "RESET" since it's default
@@ -27,16 +29,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("game_emote1"):
 		emoting = true
-		animator.play(animations[ANIM_JOYFULJUMP])
+		unrootedAnimator.play(animations[ANIM_JOYFULJUMP])
 	if Input.is_action_just_pressed("game_emote2"):
 		emoting = true
-		animator.play(animations[ANIM_MACARENA])
+		unrootedAnimator.play(animations[ANIM_MACARENA])
 	if Input.is_action_just_pressed("game_emote3"):
 		emoting = true
-		animator.play(animations[ANIM_TWERK])
+		unrootedAnimator.play(animations[ANIM_TWERK])
 	if Input.is_action_just_pressed("game_emote4"):
 		emoting = true
-		animator.play(animations[ANIM_YMCA])
+		unrootedAnimator.play(animations[ANIM_YMCA])
 	
 
 func _on_test_rucker_mvt_style_changed(new_style: StringName) -> void:
@@ -51,9 +53,9 @@ func _on_test_rucker_mvt_style_changed(new_style: StringName) -> void:
 	match new_style:
 		"idle":
 			if not emoting:
-				animator.play(animations[ANIM_STANDIDLE])
+				unrootedAnimator.play(animations[ANIM_STANDIDLE])
 		"walk_front":
-			animator.play(animations[ANIM_RUNFORWARD])
+			unrootedAnimator.play(animations[ANIM_RUNFORWARD])
 		"walk_back":
 			pass
 		"walk_left":
@@ -61,17 +63,17 @@ func _on_test_rucker_mvt_style_changed(new_style: StringName) -> void:
 		"walk_right":
 			pass
 		"crouched":
-			animator.play(animations[ANIM_CROUCHIDLE])
+			unrootedAnimator.play(animations[ANIM_CROUCHIDLE])
 		"crouch_front":
-			animator.play(animations[ANIM_CROUCHWALK])
+			unrootedAnimator.play(animations[ANIM_CROUCHWALK])
 		"flying":
-			animator.play(animations[ANIM_FALL])
+			unrootedAnimator.play(animations[ANIM_FALL])
 		"run_front":
-			animator.play(animations[ANIM_RUNFORWARD], -1, 1.5)
+			unrootedAnimator.play(animations[ANIM_RUNFORWARD], -1, 1.5)
 		"run_back":
 			pass
 		"sliding":
-			animator.play(animations[ANIM_SLIDE])
+			rootedAnimator.play(animations[ANIM_SLIDE])
 		_:
 			pass
 	
