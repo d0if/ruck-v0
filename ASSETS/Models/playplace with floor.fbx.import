@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dkcx7vndq0qfw"
-path="res://.godot/imported/playplace with floor.fbx-3472e5b2a6c764ebb3edbbf65e304c81.scn"
+path="res://.godot/imported/playplace with floor.fbx-b0901f0d59cacab40aa34ea8c476e8e2.scn"
 
 [deps]
 
-source_file="res://ASSETS/Models/playplace with floor.fbx"
-dest_files=["res://.godot/imported/playplace with floor.fbx-3472e5b2a6c764ebb3edbbf65e304c81.scn"]
+source_file="res://Assets/Models/playplace with floor.fbx"
+dest_files=["res://.godot/imported/playplace with floor.fbx-b0901f0d59cacab40aa34ea8c476e8e2.scn"]
 
 [params]
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://c3uwsovg8hbyd"]
 
-[ext_resource type="Environment" uid="uid://cb2586nrunvi2" path="res://SharedMaterials/Render/test_environment.tres" id="1_a1cac"]
-[ext_resource type="CameraAttributesPractical" uid="uid://d2jnmiyqg0la" path="res://SharedMaterials/Render/test_camera.tres" id="2_765sp"]
-[ext_resource type="PackedScene" uid="uid://b17m6vjk47aot" path="res://SharedAssets/testing/test_floor.tscn" id="3_kuvpc"]
-[ext_resource type="PackedScene" uid="uid://cn8uaa7ec0t05" path="res://SharedAssets/testing/test_ramp.tscn" id="4_ati0d"]
+[ext_resource type="Environment" uid="uid://cb2586nrunvi2" path="res://Materials/Rendering/test_environment.tres" id="1_a1cac"]
+[ext_resource type="CameraAttributesPractical" uid="uid://d2jnmiyqg0la" path="res://Materials/Rendering/test_camera.tres" id="2_765sp"]
+[ext_resource type="PackedScene" uid="uid://b17m6vjk47aot" path="res://Assets/testing/test_floor.tscn" id="3_kuvpc"]
+[ext_resource type="PackedScene" uid="uid://cn8uaa7ec0t05" path="res://Assets/testing/test_ramp.tscn" id="4_ati0d"]
 [ext_resource type="PackedScene" uid="uid://t3igcu5q0l4c" path="res://Entities/test_bean/test_bean.tscn" id="5_ah1au"]
 
 [sub_resource type="GDScript" id="GDScript_ah1au"]

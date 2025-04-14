@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://b0alospdw6db3" path="res://Entities/test_bean/test_bean.gd" id="1_y1qgj"]
 [ext_resource type="Script" uid="uid://becvupbdysbl1" path="res://Player/test_rucker/test_rucker_animations.gd" id="2_fpcym"]
 [ext_resource type="PackedScene" uid="uid://bpompn6smaqds" path="res://Utility/Camera/first_person_camera.tscn" id="2_gq1k1"]
-[ext_resource type="Texture2D" uid="uid://c8lyhw1nihyjv" path="res://Unsorted_Sharing/Animations For Rucker Textured_Material_1.png" id="3_6ooww"]
-[ext_resource type="Texture2D" uid="uid://dc0a8jmjpsha6" path="res://Unsorted_Sharing/Animations For Rucker Textured_Material.003_Metallic-Material.png" id="4_q5wpo"]
-[ext_resource type="Texture2D" uid="uid://cv6wn07u01wgq" path="res://Unsorted_Sharing/Animations For Rucker Textured_Material.png" id="5_0wv7w"]
-[ext_resource type="Texture2D" uid="uid://bdwvbx7ks867e" path="res://Unsorted_Sharing/Animations For Rucker Textured_Material_4.png" id="6_pnwel"]
-[ext_resource type="Texture2D" uid="uid://c6rlete0blll6" path="res://Unsorted_Sharing/Animations For Rucker Textured_Material.001_Metallic-Material.png" id="7_0itpc"]
-[ext_resource type="Texture2D" uid="uid://koidg262djki" path="res://Unsorted_Sharing/Animations For Rucker Textured_Material_3.png" id="8_u7k8p"]
-[ext_resource type="Texture2D" uid="uid://cof7ly8hipp6r" path="res://Unsorted_Sharing/Animations For Rucker Textured_MMJETBBK.jpg" id="9_2foqp"]
+[ext_resource type="Texture2D" uid="uid://c8lyhw1nihyjv" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material_1.png" id="3_6ooww"]
+[ext_resource type="Texture2D" uid="uid://dc0a8jmjpsha6" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material.003_Metallic-Material.png" id="4_q5wpo"]
+[ext_resource type="Texture2D" uid="uid://cv6wn07u01wgq" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material.png" id="5_0wv7w"]
+[ext_resource type="Texture2D" uid="uid://bdwvbx7ks867e" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material_4.png" id="6_pnwel"]
+[ext_resource type="Texture2D" uid="uid://c6rlete0blll6" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material.001_Metallic-Material.png" id="7_0itpc"]
+[ext_resource type="Texture2D" uid="uid://koidg262djki" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material_3.png" id="8_u7k8p"]
+[ext_resource type="Texture2D" uid="uid://cof7ly8hipp6r" path="res://Player/test_rucker/source/Animations For Rucker Textured_MMJETBBK.jpg" id="9_2foqp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1vdg3"]
 friction = 0.5
@@ -4816,7 +4816,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_f56pl")
 }
 autoplay = "RESET"
-playback_default_blend_time = 0.2
+playback_default_blend_time = 0.1
 next/Jump = &"Fall"
 blend_times = [&"Jump", &"Fall", 0.1]
 
