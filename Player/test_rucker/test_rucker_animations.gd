@@ -66,6 +66,8 @@ func _on_test_rucker_mvt_style_changed(new_style: StringName) -> void:
 			unrootedAnimator.play(animations[ANIM_CROUCHIDLE])
 		"crouch_front":
 			unrootedAnimator.play(animations[ANIM_CROUCHWALK])
+		"crouch_back":
+			unrootedAnimator.play(animations[ANIM_CROUCHWALK]) # i thought there was a crouch back anim oops
 		"flying":
 			unrootedAnimator.play(animations[ANIM_FALL])
 		"run_front":
