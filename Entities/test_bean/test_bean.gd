@@ -223,9 +223,13 @@ func update_animation_state() -> void:
 			var front_dot = Vector2(0.0, -1.0).rotated(angle_look.x).dot(Vector2(self.linear_velocity.x, self.linear_velocity.z))
 			var side_dot = Vector2(0.0, -1.0).rotated(angle_look.x + PI/2.0).dot(Vector2(self.linear_velocity.x, self.linear_velocity.z))
 			if Input.is_action_pressed("game_sprint"): #NEEDS GENERALIZED FOR ACCESS/COMPAT FOR NPC RUCKERS
-				if front_dot < 0: #negative means backwards, pos is forward
+				if side_dot > 2:
+					mvt_style = "run_right"
+				if side_dot < -2:
+					mvt_style = "run_left"
+				if front_dot < -2:
 					mvt_style = "run_back"
-				else:
+				if front_dot > 2:
 					mvt_style = "run_front"
 			elif short:
 				if front_dot < 0:
@@ -245,7 +249,8 @@ func update_animation_state() -> void:
 		
 	#quick fix for sliding
 	if crouch_sliding:
-		if rucker_model: rucker_model.rotation.x = min_contact_pitch + PI/2.0
+		if rucker_model: rucker_model.rotation.x += 0.1 * ( min_contact_pitch * sign(self.linear_velocity.y) * -1
+				+ PI/2.0 - rucker_model.rotation.x ) 
 	else:
 		if rucker_model: rucker_model.rotation.x = 0 + PI/2.0
 	#figure_out_animation_state

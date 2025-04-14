@@ -72,6 +72,10 @@ func _on_test_rucker_mvt_style_changed(new_style: StringName) -> void:
 			unrootedAnimator.play(animations[ANIM_RUNFORWARD], -1, 1.5)
 		"run_back":
 			unrootedAnimator.play(animations[ANIM_RUNBACKWARDS], -1, 1.5)
+		"run_left":
+			unrootedAnimator.play(animations[ANIM_STRAFE_L], -1, 1.5)
+		"run_right":
+			unrootedAnimator.play(animations[ANIM_STRAFE_R], -1, 1.5)
 		"sliding":
 			unrootedAnimator.play(animations[ANIM_SLIDE])
 		_:

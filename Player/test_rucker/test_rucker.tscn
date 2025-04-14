@@ -4816,7 +4816,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_f56pl")
 }
 autoplay = "RESET"
-playback_default_blend_time = 0.1
+playback_default_blend_time = 0.2
 next/Jump = &"Fall"
 blend_times = [&"Jump", &"Fall", 0.1]
 
