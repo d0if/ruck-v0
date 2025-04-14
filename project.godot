@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://global.gd"
+InputUtils="*res://Utility/input_utils.gd"
+MathUtils="*res://Utility/math_utils.gd"
 
 [display]
 

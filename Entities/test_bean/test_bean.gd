@@ -24,8 +24,9 @@ var crouch_sliding: bool = false
 var crouchslide_jumping: bool = false
 var short: bool = false
 
-@onready var rucker = $Rucker
-@onready var rucker_model = $Rucker/Armature
+@onready var rucker = $RuckerModel
+@onready var rucker_model = $RuckerModel/Armature
+@onready var cam_origin = $CameraOrigin
 
 @onready var stand_hitbox = $CollisionStand
 @onready var crouch_hitbox = $CollisionCrouch
@@ -40,7 +41,9 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	angle_look = Global.angle_look
-	if rucker: rucker.rotation.y = PI - angle_look.x
+	if cam_origin: cam_origin.rotation.y = - angle_look.x
+	if InputUtils.is_pressing_any_movement_key(): #only sync rotation if moving
+		if rucker: rucker.rotation.y = MathUtils.approach_angle(rucker.rotation.y, PI - angle_look.x, delta * 10)
 	Global.debug("angle_look", angle_look)
 	update_animation_state()
 
@@ -108,7 +111,7 @@ func _physics_process(delta: float) -> void:
 
 	Global.debug_phys("crouch_sliding", crouch_sliding)
 	
-	var vel_target_2d = Global.get_horizontal_movement_from_keyboard()
+	var vel_target_2d = InputUtils.get_horizontal_movement_from_keyboard()
 	if crouch_sliding: vel_target_2d = Vector2(0.0, 1.0) #ignore left/right/back when cs
 	vel_target_2d = vel_target_2d * move_speed
 	
@@ -148,7 +151,6 @@ func _physics_process(delta: float) -> void:
 		self.apply_central_impulse(jump_impulse_normal)
 		holding_jump = true
 		if crouch_sliding:
-			print("DEBUG")
 			var linear_velocity_norm = Vector3(self.linear_velocity.x, 0.0, self.linear_velocity.z).normalized()
 			linear_velocity_norm = linear_velocity_norm.rotated(self.linear_velocity.cross(contact_norm_3d), PI/4.0)
 			var jump_impulse_with = jump_impulse.dot(linear_velocity_norm) * linear_velocity_norm
@@ -180,7 +182,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 				min_contact_pitch = test_pitch
 	
 	#stop slope motion if not pressing keyboard
-	if Global.get_horizontal_movement_from_keyboard().length_squared() == 0.0:
+	if InputUtils.get_horizontal_movement_from_keyboard().length_squared() == 0.0:
 		if min_contact_pitch < MAX_CLIMB_ANGLE_RADS:
 			if state.linear_velocity.length_squared() < 0.1:
 				state.set_linear_velocity(Vector3(0.0, state.linear_velocity.y, 0.0))
@@ -214,7 +216,7 @@ func update_animation_state() -> void:
 	else: #touching the ground for real
 		if crouch_sliding:
 			mvt_style = "sliding" #only 1 slide direction
-		elif Global.get_horizontal_movement_from_keyboard().length_squared() == 0.0: #NEEDS GENERALIZED FOR NPCS
+		elif InputUtils.get_horizontal_movement_from_keyboard().length_squared() == 0.0: #NEEDS GENERALIZED FOR NPCS
 			mvt_style = "idle"
 			if short:
 				mvt_style = "crouched"

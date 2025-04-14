@@ -39,11 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventJoypadMotion:
 		pass
 	
-	if Global.angle_look.x < 0:
-		Global.angle_look.x += 2.0*PI
-	if Global.angle_look.x >= 2.0*PI:
-		Global.angle_look.x -= 2.0*PI
-
+	Global.angle_look.x = MathUtils.cap_radians(Global.angle_look.x)
 
 func camera_spring(pitch: float, springiness: float) -> float:
 	if pitch > ANGLE_SPRING:

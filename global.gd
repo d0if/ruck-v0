@@ -91,20 +91,3 @@ func debug_log(value = "", duration: float = 2.0, label: String = ""):
 	temp_debug_text = temp_debug_text + str(value)
 	debug_text_logging.push_front(temp_debug_text)
 	debug_duration_log.push_front(duration)
-
-func get_horizontal_movement_from_keyboard() -> Vector2:
-	var trial_angle = Vector2(0.0, 0.0) #x is right/left, y is forward/back
-	if Input.is_action_pressed("game_forward"):
-		trial_angle.y = trial_angle.y + 1.0
-	if Input.is_action_pressed("game_backward"):
-		trial_angle.y = trial_angle.y - 1.0
-	if Input.is_action_pressed("game_left"):
-		trial_angle.x = trial_angle.x - 1.0
-	if Input.is_action_pressed("game_right"):
-		trial_angle.x = trial_angle.x + 1.0
-	
-	if abs(trial_angle.x) + abs(trial_angle.y) > 1.0:
-		#moving diagonally gives you a slight buff (0.8 rather than 0.717)
-		trial_angle = trial_angle * 0.8
-	
-	return trial_angle
