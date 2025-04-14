@@ -3191,7 +3191,7 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("Armature/Skeleton3D:mixamorig_Hips")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0.0333333, 1, 0.228221, 5.41383, -0.534329, 0.0666673, 1, 0.240369, 5.74173, -0.553179, 0.1, 1, 0.249753, 6.06272, -0.573591, 0.133333, 1, 0.257179, 6.37758, -0.59445, 0.166667, 1, 0.263839, 6.68481, -0.616159, 0.2, 1, 0.270967, 6.9837, -0.639913, 0.233333, 1, 0.278898, 7.27393, -0.666119)
+tracks/0/keys = PackedFloat32Array(0.0333333, 1, 1.143, -0.011, -0.534, 0.0666673, 1, 0.240369, 5.74173, -0.553179, 0.1, 1, 0.249753, 6.06272, -0.573591, 0.133333, 1, 0.257179, 6.37758, -0.59445, 0.166667, 1, 0.263839, 6.68481, -0.616159, 0.2, 1, 0.270967, 6.9837, -0.639913, 0.233333, 1, 0.278898, 7.27393, -0.666119)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = true
 tracks/1/enabled = true
@@ -3599,6 +3599,7 @@ tracks/28/keys = PackedFloat32Array(0, 1, 0.208822, 0.00165039, -0.0358404, 0.97
 [sub_resource type="Animation" id="Animation_pbokm"]
 resource_name = "Strafe Left"
 length = 0.7
+loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -3806,6 +3807,7 @@ tracks/28/keys = PackedFloat32Array(0, 1, 0.270098, 0.0201474, -0.0290711, 0.962
 [sub_resource type="Animation" id="Animation_r1tdy"]
 resource_name = "Strafe Right"
 length = 0.7
+loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -4465,11 +4467,9 @@ script = ExtResource("1_y1qgj")
 
 [node name="CollisionCrouch" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-visible = false
 shape = SubResource("CapsuleShape3D_78lb1")
 
 [node name="CollisionStand" type="CollisionShape3D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape3D_8tlvj")
 
 [node name="StandUp" type="Area3D" parent="."]
@@ -4481,7 +4481,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
 shape = SubResource("CapsuleShape3D_mjw44")
 
 [node name="Rucker" type="Node3D" parent="."]
-transform = Transform3D(-50, 0, 4.37114e-06, 0, 50, 0, -4.37114e-06, 0, -50, 0, -1.01624, 0)
+transform = Transform3D(-50, 0, 7.54979e-06, 0, 50, 0, -7.54979e-06, 0, -50, 0, -1.01624, 0)
 script = ExtResource("2_fpcym")
 
 [node name="Armature" type="Node3D" parent="Rucker"]
@@ -4820,6 +4820,9 @@ playback_default_blend_time = 0.1
 next/Jump = &"Fall"
 blend_times = [&"Jump", &"Fall", 0.1]
 
+[node name="FirstPersonCamera" parent="Rucker" instance=ExtResource("2_gq1k1")]
+transform = Transform3D(-0.02, 0, -1.74846e-09, 0, 0.02, 0, 1.74846e-09, 0, -0.02, -2.47489e-09, 0.0352448, -0.0283095)
+
 [node name="Mesh" type="MeshInstance3D" parent="."]
 visible = false
 layers = 4
@@ -4835,11 +4838,8 @@ collision_layer = 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("SphereShape3D_78lb1")
 
-[node name="FirstPersonCamera" parent="." instance=ExtResource("2_gq1k1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.746, 1.76373)
-
 [connection signal="height_changed" from="." to="." method="_on_height_changed"]
 [connection signal="height_changed" from="." to="Rucker" method="_on_test_rucker_height_changed"]
-[connection signal="height_changed" from="." to="FirstPersonCamera" method="_on_test_bean_height_changed"]
+[connection signal="height_changed" from="." to="Rucker/FirstPersonCamera" method="_on_test_bean_height_changed"]
 [connection signal="mvt_style_changed" from="." to="Rucker" method="_on_test_rucker_mvt_style_changed"]
 [connection signal="body_entered" from="JumpReset" to="." method="_on_jump_reset_body_entered"]

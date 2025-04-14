@@ -57,11 +57,11 @@ func _on_test_rucker_mvt_style_changed(new_style: StringName) -> void:
 		"walk_front":
 			unrootedAnimator.play(animations[ANIM_RUNFORWARD])
 		"walk_back":
-			pass
+			unrootedAnimator.play(animations[ANIM_RUNBACKWARDS])
 		"walk_left":
-			pass
+			unrootedAnimator.play(animations[ANIM_STRAFE_L])
 		"walk_right":
-			pass
+			unrootedAnimator.play(animations[ANIM_STRAFE_R])
 		"crouched":
 			unrootedAnimator.play(animations[ANIM_CROUCHIDLE])
 		"crouch_front":
@@ -71,18 +71,18 @@ func _on_test_rucker_mvt_style_changed(new_style: StringName) -> void:
 		"run_front":
 			unrootedAnimator.play(animations[ANIM_RUNFORWARD], -1, 1.5)
 		"run_back":
-			pass
+			unrootedAnimator.play(animations[ANIM_RUNBACKWARDS], -1, 1.5)
 		"sliding":
-			rootedAnimator.play(animations[ANIM_SLIDE])
+			unrootedAnimator.play(animations[ANIM_SLIDE])
 		_:
 			pass
 	
 
-
-func _on_test_rucker_height_changed(is_short: bool) -> void:
-	if height_tween:
-		height_tween.kill()
-	
-	height_tween = create_tween()
-	var new_location = CROUCH_HEIGHT if is_short else WALK_HEIGHT
-	height_tween.tween_property(self, "position:y", new_location, 0.1)
+#no longer necessary due to unrooted animations
+#func _on_test_rucker_height_changed(is_short: bool) -> void:
+	#if height_tween:
+		#height_tween.kill()
+	#
+	#height_tween = create_tween()
+	#var new_location = CROUCH_HEIGHT if is_short else WALK_HEIGHT
+	#height_tween.tween_property(self, "position:y", new_location, 0.1)

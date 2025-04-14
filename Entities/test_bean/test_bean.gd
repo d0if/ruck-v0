@@ -25,6 +25,7 @@ var crouchslide_jumping: bool = false
 var short: bool = false
 
 @onready var rucker = $Rucker
+@onready var rucker_model = $Rucker/Armature
 
 @onready var stand_hitbox = $CollisionStand
 @onready var crouch_hitbox = $CollisionCrouch
@@ -134,6 +135,10 @@ func _physics_process(delta: float) -> void:
 	#just for viewing walk speed in debug
 	Global.angle_walk = Vector2(self.linear_velocity.x, self.linear_velocity.z)
 	
+	#stop crouchslide_jumping after you land
+	if jump_collider.has_overlapping_bodies() and self.linear_velocity.y < 0:
+		crouchslide_jumping = false
+
 	#Press jump button, jump collider is in the ground, & you're touching a <45deg slope
 	if Input.is_action_just_pressed("game_jump") and (jump_collider.has_overlapping_bodies()) and (min_contact_pitch < MAX_JUMP_ANGLE_RADS):
 			
@@ -143,16 +148,14 @@ func _physics_process(delta: float) -> void:
 		self.apply_central_impulse(jump_impulse_normal)
 		holding_jump = true
 		if crouch_sliding:
+			print("DEBUG")
 			var linear_velocity_norm = Vector3(self.linear_velocity.x, 0.0, self.linear_velocity.z).normalized()
 			linear_velocity_norm = linear_velocity_norm.rotated(self.linear_velocity.cross(contact_norm_3d), PI/4.0)
 			var jump_impulse_with = jump_impulse.dot(linear_velocity_norm) * linear_velocity_norm
 			self.apply_central_impulse(jump_impulse_with)
 			crouchslide_jumping = true
-			move_speed = self.linear_velocity.length()
+			move_speed = self.linear_velocity.length() * 1.05
 	
-	#stop crouchslide_jumping after you land
-	if jump_collider.has_overlapping_bodies() and self.linear_velocity.y < 0:
-		crouchslide_jumping = false
 		
 	Global.debug_phys("cs_jumping", crouchslide_jumping)
 	
@@ -197,7 +200,7 @@ func _on_height_changed(is_short: bool) -> void:
 func update_animation_state() -> void:
 	#possible movement (animation) states:
 	#idle, walk_front/back/left/right, crouched, crouch_front (no back/left/right yet),
-	#jumped, flying, landed, run_front/back (no left/right yet), sliding
+	#x, flying, x, run_front/back (no left/right yet), sliding
 	var mvt_style = "UNSET"
 	if self.linear_velocity.length_squared() <= 0.5: 
 		#idle if no movement & not crouching
@@ -205,23 +208,49 @@ func update_animation_state() -> void:
 		if short:
 			#no mvt & crouching
 			mvt_style = "crouched"
-	else: #fast movement
-		if self.get_contact_count() == 0 and (not jump_collider.has_overlapping_bodies()): #airborne
-			mvt_style = "flying"
-		else: #touching the ground for real
-			if crouch_sliding:
-				mvt_style = "sliding"
-			elif Input.is_action_pressed("game_sprint"):
-				mvt_style = "run_front"
+	#else: #can now overwrite slow movement. fixes bug where you wiggle arms at apex of jump
+	if (self.get_contact_count() == 0 and (not jump_collider.has_overlapping_bodies())) or self.min_contact_pitch > MAX_CLIMB_ANGLE_RADS: #airborne
+		mvt_style = "flying"
+	else: #touching the ground for real
+		if crouch_sliding:
+			mvt_style = "sliding" #only 1 slide direction
+		elif Global.get_horizontal_movement_from_keyboard().length_squared() == 0.0: #NEEDS GENERALIZED FOR NPCS
+			mvt_style = "idle"
+			if short:
+				mvt_style = "crouched"
+		else:
+			#get move direction
+			var front_dot = Vector2(0.0, -1.0).rotated(angle_look.x).dot(Vector2(self.linear_velocity.x, self.linear_velocity.z))
+			var side_dot = Vector2(0.0, -1.0).rotated(angle_look.x + PI/2.0).dot(Vector2(self.linear_velocity.x, self.linear_velocity.z))
+			if Input.is_action_pressed("game_sprint"): #NEEDS GENERALIZED FOR ACCESS/COMPAT FOR NPC RUCKERS
+				if front_dot < 0: #negative means backwards, pos is forward
+					mvt_style = "run_back"
+				else:
+					mvt_style = "run_front"
 			elif short:
-				mvt_style = "crouch_front"
+				if front_dot < 0:
+					mvt_style = "crouch_back"
+				else:
+					mvt_style = "crouch_front"
 			else:
-				mvt_style = "walk_front"
+				#forward/backwards walking needs to override any strafing
+				if side_dot > 2:
+					mvt_style = "walk_right"
+				if side_dot < -2:
+					mvt_style = "walk_left"
+				if front_dot < -2:
+					mvt_style = "walk_back"
+				if front_dot > 2:
+					mvt_style = "walk_front"
 		
-
-	
+	#quick fix for sliding
+	if crouch_sliding:
+		if rucker_model: rucker_model.rotation.x = min_contact_pitch + PI/2.0
+	else:
+		if rucker_model: rucker_model.rotation.x = 0 + PI/2.0
 	#figure_out_animation_state
 	#if animation_state != old_animation_state:
 	if mvt_style != mvt_style_old:
-		mvt_style_changed.emit(mvt_style)
+		if mvt_style != "UNSET":
+			mvt_style_changed.emit(mvt_style)
 	mvt_style_old = mvt_style
