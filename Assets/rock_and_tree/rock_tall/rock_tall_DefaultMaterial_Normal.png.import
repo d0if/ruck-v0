@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bb5tohqty18j1"
-path.s3tc="res://.godot/imported/rock_tall_DefaultMaterial_Normal.png-ddea0a0df8d2389fb9c70e9441e8db36.s3tc.ctex"
+path.s3tc="res://.godot/imported/rock_tall_DefaultMaterial_Normal.png-f90a4de85b8fb5f51a0b50e55720f04a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Assets/rock_and_tree/rock_tall/rock_tall_DefaultMaterial_Normal.png"
-dest_files=["res://.godot/imported/rock_tall_DefaultMaterial_Normal.png-ddea0a0df8d2389fb9c70e9441e8db36.s3tc.ctex"]
+source_file="res://ASSETS/rock_and_tree/rock_tall/rock_tall_DefaultMaterial_Normal.png"
+dest_files=["res://.godot/imported/rock_tall_DefaultMaterial_Normal.png-f90a4de85b8fb5f51a0b50e55720f04a.s3tc.ctex"]
 
 [params]
 

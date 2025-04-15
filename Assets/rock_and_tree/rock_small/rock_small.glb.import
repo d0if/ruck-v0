@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dfvg4irk20kc1"
-path="res://.godot/imported/rock_small.glb-75c4e84d05e3cd84a8b63751f04150bf.scn"
+path="res://.godot/imported/rock_small.glb-1f04279eda64518d511b81d3bebc7a17.scn"
 
 [deps]
 
-source_file="res://Assets/rock_and_tree/rock_small/rock_small.glb"
-dest_files=["res://.godot/imported/rock_small.glb-75c4e84d05e3cd84a8b63751f04150bf.scn"]
+source_file="res://ASSETS/rock_and_tree/rock_small/rock_small.glb"
+dest_files=["res://.godot/imported/rock_small.glb-1f04279eda64518d511b81d3bebc7a17.scn"]
 
 [params]
 

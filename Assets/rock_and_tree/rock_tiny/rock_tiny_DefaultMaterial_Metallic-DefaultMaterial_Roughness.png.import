@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cddimgjxin1uc"
-path.s3tc="res://.godot/imported/rock_tiny_DefaultMaterial_Metallic-DefaultMaterial_Roughness.png-b21f407c33068a4de8bc823ebd5d93f0.s3tc.ctex"
+path.s3tc="res://.godot/imported/rock_tiny_DefaultMaterial_Metallic-DefaultMaterial_Roughness.png-1da7bf226e5e35c934d4f831ba85e19e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Assets/rock_and_tree/rock_tiny/rock_tiny_DefaultMaterial_Metallic-DefaultMaterial_Roughness.png"
-dest_files=["res://.godot/imported/rock_tiny_DefaultMaterial_Metallic-DefaultMaterial_Roughness.png-b21f407c33068a4de8bc823ebd5d93f0.s3tc.ctex"]
+source_file="res://ASSETS/rock_and_tree/rock_tiny/rock_tiny_DefaultMaterial_Metallic-DefaultMaterial_Roughness.png"
+dest_files=["res://.godot/imported/rock_tiny_DefaultMaterial_Metallic-DefaultMaterial_Roughness.png-1da7bf226e5e35c934d4f831ba85e19e.s3tc.ctex"]
 
 [params]
 
