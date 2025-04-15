@@ -12,3 +12,5 @@ background_mode = 2
 sky = SubResource("Sky_7a8rp")
 ambient_light_source = 3
 reflected_light_source = 2
+volumetric_fog_density = 0.4427
+volumetric_fog_detail_spread = 0.5

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhvmh0h8x2spr"
-path.s3tc="res://.godot/imported/rock_average_DefaultMaterial_Base_color.png-e3ff85869b83a9bdcd29fa1c389a4421.s3tc.ctex"
+path.s3tc="res://.godot/imported/rock_average_DefaultMaterial_Base_color.png-dfe5008fd1f57f46c330290c1ba3be2b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://ASSETS/rock_and_tree/rock_average/rock_average_DefaultMaterial_Base_color.png"
-dest_files=["res://.godot/imported/rock_average_DefaultMaterial_Base_color.png-e3ff85869b83a9bdcd29fa1c389a4421.s3tc.ctex"]
+source_file="res://Assets/rock_and_tree/rock_average/rock_average_DefaultMaterial_Base_color.png"
+dest_files=["res://.godot/imported/rock_average_DefaultMaterial_Base_color.png-dfe5008fd1f57f46c330290c1ba3be2b.s3tc.ctex"]
 
 [params]
 

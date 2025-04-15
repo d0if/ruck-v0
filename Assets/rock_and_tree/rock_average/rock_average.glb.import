@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b12id8l5bynxg"
-path="res://.godot/imported/rock_average.glb-c3dceac9190e8ceece92121e70738000.scn"
+path="res://.godot/imported/rock_average.glb-598bbcfe6534fceaebbabfcfa904b11b.scn"
 
 [deps]
 
-source_file="res://ASSETS/rock_and_tree/rock_average/rock_average.glb"
-dest_files=["res://.godot/imported/rock_average.glb-c3dceac9190e8ceece92121e70738000.scn"]
+source_file="res://Assets/rock_and_tree/rock_average/rock_average.glb"
+dest_files=["res://.godot/imported/rock_average.glb-598bbcfe6534fceaebbabfcfa904b11b.scn"]
 
 [params]
 

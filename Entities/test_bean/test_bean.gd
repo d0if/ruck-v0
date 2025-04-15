@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 	if cam_origin: cam_origin.rotation.y = - angle_look.x
 	if InputUtils.is_pressing_any_movement_key(): #only sync rotation if moving
 		if rucker: rucker.rotation.y = MathUtils.approach_angle(rucker.rotation.y, PI - angle_look.x, delta * 10)
-	Global.debug("angle_look", angle_look)
+	#Global.debug("angle_look", angle_look)
 	update_animation_state()
 
 func _physics_process(delta: float) -> void:
@@ -66,7 +66,7 @@ func _physics_process(delta: float) -> void:
 	#else: #only decay move speed if going uphill
 		#move_speed = move_speed * 0.997
 	
-	Global.debug_phys("move_speed", move_speed)
+	#Global.debug_phys("move_speed", move_speed)
 	
 	if holding_jump:
 		if not Input.is_action_pressed("game_jump"):
@@ -109,7 +109,7 @@ func _physics_process(delta: float) -> void:
 		crouch_sliding = false
 		self.physics_material_override.friction = 0.5
 
-	Global.debug_phys("crouch_sliding", crouch_sliding)
+	#Global.debug_phys("crouch_sliding", crouch_sliding)
 	
 	var vel_target_2d = InputUtils.get_horizontal_movement_from_keyboard()
 	if crouch_sliding: vel_target_2d = Vector2(0.0, 1.0) #ignore left/right/back when cs
@@ -159,7 +159,7 @@ func _physics_process(delta: float) -> void:
 			move_speed = self.linear_velocity.length() * 1.05
 	
 		
-	Global.debug_phys("cs_jumping", crouchslide_jumping)
+	#Global.debug_phys("cs_jumping", crouchslide_jumping)
 	
 	#slow down quicker if hands are off WASD (maybe get rid of this)
 	var impulse_scale_rate = 10.0 if (vel_target_2d.length_squared() == 0.0) else 5.0
@@ -167,7 +167,7 @@ func _physics_process(delta: float) -> void:
 	if not jump_collider.has_overlapping_bodies():
 		impulse_scale_rate = impulse_scale_rate * 0.5
 	self.apply_central_impulse(impulse_scale_rate * vel_error_3d * delta * self.mass)
-	Global.debug_phys("linear_velocity", self.linear_velocity)
+	#Global.debug_phys("linear_velocity", self.linear_velocity)
 
 #get rid of motion on slopes & get contact info for elsewhere
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:

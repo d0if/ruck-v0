@@ -3,6 +3,7 @@ extends Node
 var zoom_float: float = 0.0 #interpolate camera between zoom levels
 enum {ZOOM_FP, ZOOM_SP, ZOOM_TP}
 var zoom_level = ZOOM_FP #use this for functionality
+signal zoom_level_changed
 
 var angle_look: Vector2
 var angle_walk: Vector2
@@ -43,7 +44,7 @@ func _load_settings() -> Error:
 		if settings.load("user://settings.cfg") == OK:
 			
 			#settings & default both loaded. make sure everything is available
-			var _settings_sections_default = _settings_default.get_sections()			
+			var _settings_sections_default = _settings_default.get_sections()
 			#iterate over _settings_default & find what may be needed
 			for _ssd in _settings_sections_default:
 				var _settings_entries_default = _settings_default.get_section_keys(_ssd)

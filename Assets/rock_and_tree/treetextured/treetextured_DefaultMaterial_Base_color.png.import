@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dllda7e1d1rgb"
-path.s3tc="res://.godot/imported/treetextured_DefaultMaterial_Base_color.png-4dc8558da51cc55d59d3d808c37b4908.s3tc.ctex"
+path.s3tc="res://.godot/imported/treetextured_DefaultMaterial_Base_color.png-eff00a0e75d20f7492c4389cae15e6be.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://ASSETS/rock_and_tree/treetextured/treetextured_DefaultMaterial_Base_color.png"
-dest_files=["res://.godot/imported/treetextured_DefaultMaterial_Base_color.png-4dc8558da51cc55d59d3d808c37b4908.s3tc.ctex"]
+source_file="res://Assets/rock_and_tree/treetextured/treetextured_DefaultMaterial_Base_color.png"
+dest_files=["res://.godot/imported/treetextured_DefaultMaterial_Base_color.png-eff00a0e75d20f7492c4389cae15e6be.s3tc.ctex"]
 
 [params]
 

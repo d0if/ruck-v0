@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bkaba3oe6kk06"
-path.s3tc="res://.godot/imported/tree_leaves blurred.png-f16b5f46f7a32dac2f6b97ac2421c360.s3tc.ctex"
+path.s3tc="res://.godot/imported/tree_leaves blurred.png-42118ef0f29906594f554d9a10401f61.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://ASSETS/rock_and_tree/treeold/tree_leaves blurred.png"
-dest_files=["res://.godot/imported/tree_leaves blurred.png-f16b5f46f7a32dac2f6b97ac2421c360.s3tc.ctex"]
+source_file="res://Assets/rock_and_tree/treeold/tree_leaves blurred.png"
+dest_files=["res://.godot/imported/tree_leaves blurred.png-42118ef0f29906594f554d9a10401f61.s3tc.ctex"]
 
 [params]
 

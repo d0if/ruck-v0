@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bamhq2uog5smj"]
+
+[ext_resource type="Script" uid="uid://bo7her5dxvofp" path="res://Utility/Camera/third_person_camera.gd" id="1_pub8v"]
+
+[node name="ThirdPersonCamera" type="Node3D"]
+script = ExtResource("1_pub8v")
+
+[node name="Gimbal" type="Node3D" parent="."]
+
+[node name="Camera" type="Camera3D" parent="Gimbal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.75)
+current = true
