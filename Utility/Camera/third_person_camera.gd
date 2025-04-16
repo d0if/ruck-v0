@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 			Global.angle_look.y = camera_spring(Global.angle_look.y, 1/(1+10*delta))
 		
 		#gimbal.rotation.y = -Global.angle_look.x #temporarily removed for 3rd person
-		camera.rotation.x = -Global.angle_look.y
+		if camera: camera.rotation.x = -Global.angle_look.y
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:
