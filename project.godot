@@ -31,6 +31,10 @@ window/stretch/aspect="ignore"
 
 project/assembly_name="ruck-v0"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
+
 [input]
 
 game_forward={
