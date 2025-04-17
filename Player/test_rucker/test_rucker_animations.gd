@@ -45,8 +45,8 @@ func _on_test_rucker_mvt_style_changed(new_style: StringName) -> void:
 	#possible movement (animation) states:
 	#idle, walk_front/back/left/right, crouched, crouch_front (no back/left/right yet),
 	#jumped, flying, landed, run_front/back (no left/right yet), sliding
-	Global.debug_log(new_style)
-	#play animation based on new state
+	DebugUtils.f3_log(new_style)
+	
 	if new_style != "idle" and emoting:
 		emoting = false
 	

@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5hcic5n46hl2"]
+
+[ext_resource type="Script" uid="uid://b2ulggit7uxkv" path="res://Interface/debug_label.gd" id="1_e0xdh"]
+
+[node name="DebugView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="debuglabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 1156.0
+offset_bottom = 645.0
+mouse_filter = 2
+text = "2.0"
+scroll_active = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+script = ExtResource("1_e0xdh")

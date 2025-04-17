@@ -8,10 +8,6 @@ signal zoom_level_changed
 var angle_look: Vector2
 var angle_walk: Vector2
 
-var debug_text_physics: String = ""
-var debug_text_process: String = ""
-var debug_text_logging: Array = []
-var debug_duration_log: Array = []
 
 var settings = ConfigFile.new() #gets initialized by _load_settings()
 
@@ -32,9 +28,9 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			zoom_float = zoom_float + 0.01
+			zoom_float = zoom_float + 0.05
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			zoom_float = zoom_float - 0.01
+			zoom_float = zoom_float - 0.05
 
 func _load_settings() -> Error:
 	#loads settings&makes sure that every field in settings_default is available
@@ -74,21 +70,3 @@ func _load_settings() -> Error:
 		return FAILED
 		
 	return OK
-
-func debug_phys(label: String = "", value = ""):
-	debug_text_physics = debug_text_physics + "\n"
-	if label != "":
-		debug_text_physics = debug_text_physics + label + ": "
-	debug_text_physics = debug_text_physics + str(value)
-
-func debug(label: String = "", value = ""):
-	debug_text_process = debug_text_process + "\n"
-	if label != "":
-		debug_text_process = debug_text_process + label + ": "
-	debug_text_process = debug_text_process + str(value)
-
-func debug_log(value = "", duration: float = 2.0, label: String = ""):
-	var temp_debug_text = label + ": " if label != "" else ""
-	temp_debug_text = temp_debug_text + str(value)
-	debug_text_logging.push_front(temp_debug_text)
-	debug_duration_log.push_front(duration)

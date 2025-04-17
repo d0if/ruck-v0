@@ -12,3 +12,6 @@ script = ExtResource("1_pub8v")
 [node name="Camera" type="Camera3D" parent="Gimbal/Pitch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.75)
 current = true
+
+[node name="Node3D" type="Node3D" parent="Gimbal/Pitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.75)

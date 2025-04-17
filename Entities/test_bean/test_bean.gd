@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 			move_speed_target = MOVE_SPEED_CROUCH
 		else:
 			move_speed_target = MOVE_SPEED_WALK
-	
+	DebugUtils.f3_phys("mv speed", move_speed_target)
 	if not (crouch_sliding or crouchslide_jumping):
 		move_speed = move_speed + 0.1 * (move_speed_target - move_speed)
 	#else: #only decay move speed if going uphill

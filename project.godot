@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ruck-v0"
-run/main_scene="uid://xycmanbxay3k"
+run/main_scene="uid://bhdq8fk77046g"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
@@ -19,8 +19,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://global.gd"
-InputUtils="*res://Utility/input_utils.gd"
-MathUtils="*res://Utility/math_utils.gd"
+InputUtils="*res://Utility/Global Scripts/input_utils.gd"
+MathUtils="*res://Utility/Global Scripts/math_utils.gd"
+DebugUtils="*res://Utility/Global Scripts/debug_utils.gd"
 
 [display]
 
@@ -90,6 +91,21 @@ game_emote3={
 game_emote4={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":52,"key_label":0,"unicode":52,"location":0,"echo":false,"script":null)
+]
+}
+ui_showdebug={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194334,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+ui_cameratoggle={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194336,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+ui_hidegui={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194332,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 

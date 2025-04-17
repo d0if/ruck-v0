@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 		if abs(Global.angle_look.y) > ANGLE_SPRING: #1/1+10d is for keeping spring consistent @ diff framerates
 			Global.angle_look.y = camera_spring(Global.angle_look.y, 1/(1+10*delta))
 		
-		#gimbal.rotation.y = -Global.angle_look.x #temporarily removed for 3rd person
+		gimbal.rotation.y = -Global.angle_look.x #temporarily removed for 3rd person
 		camera.rotation.x = -Global.angle_look.y
 	pass
 

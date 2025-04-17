@@ -4482,9 +4482,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
 shape = SubResource("CapsuleShape3D_mjw44")
 
 [node name="CameraOrigin" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 
 [node name="FirstPersonCamera" parent="CameraOrigin" instance=ExtResource("2_gq1k1")]
-transform = Transform3D(1, 0, -6.35728e-08, 0, 1, 0, 6.35728e-08, 0, 1, 0, 0.75, 0)
+transform = Transform3D(1, 0, -6.35728e-08, 0, 1, 0, 6.35728e-08, 0, 1, 0, 0, 0)
 
 [node name="ThirdPersonCamera" parent="CameraOrigin" instance=ExtResource("3_q5wpo")]
 
