@@ -1,8 +1,9 @@
-[gd_scene load_steps=58 format=4 uid="uid://cs0parchc8d41"]
+[gd_scene load_steps=59 format=4 uid="uid://cs0parchc8d41"]
 
 [ext_resource type="Script" uid="uid://b0alospdw6db3" path="res://Entities/test_bean/test_bean.gd" id="1_y1qgj"]
 [ext_resource type="Script" uid="uid://becvupbdysbl1" path="res://Player/test_rucker/test_rucker_animations.gd" id="2_fpcym"]
 [ext_resource type="PackedScene" uid="uid://bpompn6smaqds" path="res://Utility/Camera/first_person_camera.tscn" id="2_gq1k1"]
+[ext_resource type="Script" uid="uid://c8mmew7g1vcds" path="res://Utility/Camera/camera_utils.gd" id="2_q5wpo"]
 [ext_resource type="Texture2D" uid="uid://c8lyhw1nihyjv" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material_1.png" id="3_6ooww"]
 [ext_resource type="PackedScene" uid="uid://bamhq2uog5smj" path="res://Utility/Camera/third_person_camera.tscn" id="3_q5wpo"]
 [ext_resource type="Texture2D" uid="uid://dc0a8jmjpsha6" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material.003_Metallic-Material.png" id="4_q5wpo"]
@@ -4483,6 +4484,7 @@ shape = SubResource("CapsuleShape3D_mjw44")
 
 [node name="CameraOrigin" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+script = ExtResource("2_q5wpo")
 
 [node name="FirstPersonCamera" parent="CameraOrigin" instance=ExtResource("2_gq1k1")]
 transform = Transform3D(1, 0, -6.35728e-08, 0, 1, 0, 6.35728e-08, 0, 1, 0, 0, 0)
@@ -4847,5 +4849,7 @@ shape = SubResource("SphereShape3D_78lb1")
 [connection signal="height_changed" from="." to="." method="_on_height_changed"]
 [connection signal="height_changed" from="." to="CameraOrigin/FirstPersonCamera" method="_on_test_bean_height_changed"]
 [connection signal="height_changed" from="." to="RuckerModel" method="_on_test_rucker_height_changed"]
+[connection signal="mvt_speed_changed" from="." to="CameraOrigin/FirstPersonCamera" method="_on_test_rucker_mvt_speed_changed"]
+[connection signal="mvt_speed_changed" from="." to="CameraOrigin/ThirdPersonCamera" method="_on_test_rucker_mvt_speed_changed"]
 [connection signal="mvt_style_changed" from="." to="RuckerModel" method="_on_test_rucker_mvt_style_changed"]
 [connection signal="body_entered" from="JumpReset" to="." method="_on_jump_reset_body_entered"]
