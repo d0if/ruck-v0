@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://ke6fxlxk2xx0"]
+[gd_scene load_steps=8 format=3 uid="uid://ke6fxlxk2xx0"]
 
 [ext_resource type="Terrain3DMaterial" uid="uid://bje4e23kirgcg" path="res://Environments/test_terrainworld/test_terrainworld_terrain3dmaterial.res" id="1_ikvui"]
 [ext_resource type="Terrain3DAssets" uid="uid://i08qad6k60fh" path="res://Environments/test_terrainworld/test_terrainworld_terrain3dassets.res" id="2_qtr8v"]
 [ext_resource type="PackedScene" uid="uid://cs0parchc8d41" path="res://Player/test_rucker/test_rucker.tscn" id="3_tx5qi"]
 [ext_resource type="Environment" uid="uid://cb2586nrunvi2" path="res://Materials/Rendering/test_environment.tres" id="4_tx5qi"]
 [ext_resource type="CameraAttributesPractical" uid="uid://d2jnmiyqg0la" path="res://Materials/Rendering/test_camera.tres" id="5_j3uw3"]
+[ext_resource type="PackedScene" uid="uid://b12id8l5bynxg" path="res://Assets Temp Renamed/rock_and_tree/rock_average/rock_average.glb" id="7_67ung"]
+[ext_resource type="PackedScene" uid="uid://dwrubov442o4y" path="res://Assets Temp Renamed/rock_and_tree/rock_short/rock_short.glb" id="8_qwd1l"]
 
 [node name="TestTerrainworld" type="Node3D"]
 
@@ -22,14 +24,20 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53328, 1.41729, -1.98723)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.547135, -0.300391, -0.781287, -0.729561, 0.628713, 0.269183, 0.410345, 0.717276, -0.563144, 0, 15.7858, 0)
-light_color = Color(0.999676, 0.938762, 0.795403, 1)
-light_energy = 0.485
+transform = Transform3D(-0.547135, -0.300391, -0.781286, -0.729561, 0.628713, 0.269183, 0.410345, 0.717276, -0.563145, 0, 15.7858, 0)
+light_color = Color(0.89467, 0.885398, 0.766899, 1)
+light_energy = 1.455
 light_indirect_energy = 1.808
-light_volumetric_fog_energy = 3.806
+light_volumetric_fog_energy = 13.018
 shadow_enabled = true
 shadow_normal_bias = 0.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("4_tx5qi")
 camera_attributes = ExtResource("5_j3uw3")
+
+[node name="rock_average" parent="." instance=ExtResource("7_67ung")]
+transform = Transform3D(-0.533232, 0, -0.429987, 0, 0.685, 0, 0.429987, 0, -0.533232, 7.92625, 0, 2.42895)
+
+[node name="rock_short" parent="." instance=ExtResource("8_qwd1l")]
+transform = Transform3D(0.185, 0, 0, 0, 0.185, 0, 0, 0, 0.185, 5.94138, 0.147698, -2.02668)

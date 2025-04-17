@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dch4t6tokpe34"]
+
+[ext_resource type="PackedScene" uid="uid://cdy8yb8i0h8o" path="res://Assets Temp Renamed/rock_and_tree/stylized_tree/stylized tree.glb" id="1_teje7"]
+[ext_resource type="Texture2D" uid="uid://djwheq3jy61bc" path="res://Materials/leaf cluster.png" id="2_jdegw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cecg5"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 2
+diffuse_mode = 1
+albedo_color = Color(0.706685, 0.799359, 0.490579, 1)
+albedo_texture = ExtResource("2_jdegw")
+emission = Color(0.454749, 0.566434, 0.294983, 1)
+emission_energy_multiplier = 0.0
+heightmap_scale = -1.831
+grow_amount = -16.0
+
+[node name="stylized tree" instance=ExtResource("1_teje7")]
+
+[node name="tree" parent="." index="0"]
+gi_lightmap_texel_scale = 3.4218
+surface_material_override/1 = SubResource("StandardMaterial3D_cecg5")
