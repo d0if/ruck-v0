@@ -31,7 +31,7 @@ var short: bool = false
 @onready var stand_hitbox = $CollisionStand
 @onready var crouch_hitbox = $CollisionCrouch
 signal height_changed(is_short: bool)
-signal mvt_speed_changed(target_speed: float)
+signal mvt_speed_changed(new_speed: float)
 
 var mvt_style_old: StringName = "RESET"
 signal mvt_style_changed(new_anim: StringName)
@@ -46,6 +46,9 @@ func _process(delta: float) -> void:
 		if rucker: rucker.rotation.y = MathUtils.approach_angle(rucker.rotation.y, PI - angle_look.x, delta * 10)
 	#Global.debug("angle_look", angle_look)
 	update_animation_state()
+	mvt_speed_changed.emit(move_speed_target + self.linear_velocity.length())
+	DebugUtils.f3_main("move speed target", move_speed_target)
+	DebugUtils.f3_main("actual move speed", self.linear_velocity.length())
 
 func _physics_process(delta: float) -> void:
 	

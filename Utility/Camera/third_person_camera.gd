@@ -3,6 +3,8 @@ extends Node3D
 const ANGLE_SPRING: float = (PI/2.0)*(5.0/6.0)
 const ANGLE_MAX: float = ANGLE_SPRING * 2.0
 
+var target_fov: float = 75.0
+
 #const WALK_HEIGHT = 0.0
 #const CROUCH_HEIGHT = -0.5
 
@@ -28,6 +30,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if enabled:
+		#update fov
+		camera.fov += 10 * delta * (target_fov - camera.fov)
+		
 		#raycast is getting shot in physics_process, leaving ray length
 		if ray_colliding:
 			camera.position.z = ray_length
@@ -95,3 +100,7 @@ func camera_spring(pitch: float, springiness: float) -> float:
 	#height_tween = create_tween()
 	#var new_location = CROUCH_HEIGHT if is_short else WALK_HEIGHT
 	#height_tween.tween_property(yaw, "position:y", new_location, 0.1)
+
+
+func _on_test_rucker_mvt_speed_changed(new_speed: float) -> void:
+	target_fov = 75.0 + 2*sqrt(new_speed) - 10
