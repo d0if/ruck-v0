@@ -4848,6 +4848,7 @@ shape = SubResource("SphereShape3D_78lb1")
 
 [connection signal="height_changed" from="." to="." method="_on_height_changed"]
 [connection signal="height_changed" from="." to="CameraOrigin/FirstPersonCamera" method="_on_test_bean_height_changed"]
+[connection signal="height_changed" from="." to="CameraOrigin/ThirdPersonCamera" method="_on_test_bean_height_changed"]
 [connection signal="height_changed" from="." to="RuckerModel" method="_on_test_rucker_height_changed"]
 [connection signal="mvt_speed_changed" from="." to="CameraOrigin/FirstPersonCamera" method="_on_test_rucker_mvt_speed_changed"]
 [connection signal="mvt_speed_changed" from="." to="CameraOrigin/ThirdPersonCamera" method="_on_test_rucker_mvt_speed_changed"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ke6fxlxk2xx0"]
 
-[ext_resource type="Terrain3DMaterial" uid="uid://bje4e23kirgcg" path="res://test_terrainworld_terrain3dmaterial.res" id="1_ikvui"]
-[ext_resource type="Terrain3DAssets" uid="uid://i08qad6k60fh" path="res://test_terrainworld_terrain3dassets.res" id="2_qtr8v"]
+[ext_resource type="Terrain3DMaterial" uid="uid://bje4e23kirgcg" path="res://Environments/test_terrainworld/test_terrainworld_terrain3dmaterial.res" id="1_ikvui"]
+[ext_resource type="Terrain3DAssets" uid="uid://i08qad6k60fh" path="res://Environments/test_terrainworld/test_terrainworld_terrain3dassets.res" id="2_qtr8v"]
 [ext_resource type="PackedScene" uid="uid://cs0parchc8d41" path="res://Player/test_rucker/test_rucker.tscn" id="3_tx5qi"]
 [ext_resource type="Environment" uid="uid://cb2586nrunvi2" path="res://Materials/Rendering/test_environment.tres" id="4_tx5qi"]
 [ext_resource type="CameraAttributesPractical" uid="uid://d2jnmiyqg0la" path="res://Materials/Rendering/test_camera.tres" id="5_j3uw3"]
@@ -14,17 +14,21 @@ material = ExtResource("1_ikvui")
 assets = ExtResource("2_qtr8v")
 show_grid = true
 mesh_size = 32
-show_checkered = true
 show_region_grid = true
 top_level = true
 metadata/_edit_lock_ = true
 
 [node name="TestRucker" parent="." instance=ExtResource("3_tx5qi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41729, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53328, 1.41729, -1.98723)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.911403, 0.343552, -0.226531, 0, 0.550481, 0.834848, 0.411514, 0.760883, -0.50171, 0, 15.7858, 0)
+transform = Transform3D(-0.547135, -0.300391, -0.781287, -0.729561, 0.628713, 0.269183, 0.410345, 0.717276, -0.563144, 0, 15.7858, 0)
+light_color = Color(0.999676, 0.938762, 0.795403, 1)
+light_energy = 0.485
+light_indirect_energy = 1.808
+light_volumetric_fog_energy = 3.806
 shadow_enabled = true
+shadow_normal_bias = 0.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("4_tx5qi")

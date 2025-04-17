@@ -5,10 +5,10 @@ const ANGLE_MAX: float = ANGLE_SPRING * 2.0
 
 var target_fov: float = 75.0
 
-#const WALK_HEIGHT = 0.0
-#const CROUCH_HEIGHT = -0.5
+const WALK_HEIGHT = 0.0
+const CROUCH_HEIGHT = -0.5
 
-#var height_tween: Tween
+var height_tween: Tween
 
 @onready var yaw = $Gimbal
 @onready var pitch = $Gimbal/Pitch
@@ -93,13 +93,13 @@ func camera_spring(pitch: float, springiness: float) -> float:
 	return pitch
 
 
-#func _on_test_bean_height_changed(is_short: bool) -> void:
-	#if height_tween:
-		#height_tween.kill()
-	#
-	#height_tween = create_tween()
-	#var new_location = CROUCH_HEIGHT if is_short else WALK_HEIGHT
-	#height_tween.tween_property(yaw, "position:y", new_location, 0.1)
+func _on_test_bean_height_changed(is_short: bool) -> void:
+	if height_tween:
+		height_tween.kill()
+	
+	height_tween = create_tween()
+	var new_location = CROUCH_HEIGHT if is_short else WALK_HEIGHT
+	height_tween.tween_property(yaw, "position:y", new_location, 0.1)
 
 
 func _on_test_rucker_mvt_speed_changed(new_speed: float) -> void:
