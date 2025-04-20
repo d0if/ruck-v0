@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://cs0parchc8d41"]
+[gd_scene load_steps=60 format=4 uid="uid://cs0parchc8d41"]
 
 [ext_resource type="Script" uid="uid://b0alospdw6db3" path="res://Entities/test_bean/test_bean.gd" id="1_y1qgj"]
 [ext_resource type="Script" uid="uid://becvupbdysbl1" path="res://Player/test_rucker/test_rucker_animations.gd" id="2_fpcym"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c6rlete0blll6" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material.001_Metallic-Material.png" id="7_0itpc"]
 [ext_resource type="Texture2D" uid="uid://koidg262djki" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material_3.png" id="8_u7k8p"]
 [ext_resource type="Texture2D" uid="uid://cof7ly8hipp6r" path="res://Player/test_rucker/source/Animations For Rucker Textured_MMJETBBK.jpg" id="9_2foqp"]
+[ext_resource type="AudioStream" uid="uid://eeuk4473x7wj" path="res://sounds/sound effects/Footsteps.wav" id="13_0wv7w"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1vdg3"]
 friction = 0.5
@@ -899,6 +900,23 @@ tracks/28/path = NodePath("Armature/Skeleton3D:mixamorig_RightToeBase")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/keys = PackedFloat32Array(0, 1, 0.19754, -0.00611581, -0.0342766, 0.979676, 0.0333333, 1, 0.19754, -0.00611581, -0.0342766, 0.979676, 0.0666667, 1, 0.199221, -0.00551284, -0.0341595, 0.979344, 0.1, 1, 0.204787, -0.00351467, -0.0337697, 0.978218, 0.133333, 1, 0.210791, -0.00135562, -0.0333485, 0.976961, 0.166667, 1, 0.213315, -0.000447498, -0.0331701, 0.97642, 0.2, 1, 0.211627, -0.00105498, -0.0332897, 0.976783, 0.233333, 1, 0.208546, -0.00216332, -0.0335064, 0.977436, 0.266667, 1, 0.209817, -0.00170593, -0.0334179, 0.977168, 0.3, 1, 0.223644, 0.00327685, -0.0324391, 0.974125, 0.333333, 1, 0.27815, 0.0486154, -0.0211217, 0.959074, 0.366667, 1, 0.360573, 0.0932411, -0.00709814, 0.928032, 0.4, 1, 0.36839, 0.174625, 0.0181245, 0.912944, 0.433333, 1, 0.278802, 0.0775261, -0.0145346, 0.957104, 0.466667, 1, 0.195452, -0.00686446, -0.0344217, 0.980085, 0.733333, 1, 0.195452, -0.00686413, -0.0344219, 0.980085, 0.766667, 1, 0.306618, 0.0197868, -0.0289572, 0.951186, 0.8, 1, 0.248769, 0.00738875, -0.0317959, 0.968013, 0.833333, 1, 0.195509, -0.00684373, -0.034418, 0.980074, 1.03333, 1, 0.195452, -0.00686417, -0.0344224, 0.980085, 1.06667, 1, 0.19754, -0.00611592, -0.0342766, 0.979676)
+tracks/29/type = "method"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("..")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0.233333, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_step_sounds"
+}, {
+"args": [],
+"method": &"play_step_sounds"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_wb64y"]
 resource_name = "Crouch to Stand"
@@ -2767,6 +2785,23 @@ tracks/28/path = NodePath("Armature/Skeleton3D:mixamorig_RightToeBase")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/keys = PackedFloat32Array(0, 1, 0.287476, 0.0265113, -0.0277785, 0.957018, 0.0333333, 1, 0.287476, 0.0265113, -0.0277785, 0.957018, 0.0666667, 1, 0.269781, 0.0200318, -0.0290946, 0.962274, 0.1, 1, 0.249167, 0.0125209, -0.0306042, 0.967896, 0.133333, 1, 0.255044, 0.014658, -0.0301765, 0.966347, 0.166667, 1, 0.192595, -0.00788805, -0.0346204, 0.980636, 0.2, 1, 0.142204, -0.0258242, -0.038046, 0.988769, 0.233333, 1, 0.160171, -0.0194549, -0.0368408, 0.98621, 0.266667, 1, 0.180646, -0.0121616, -0.0354454, 0.982834, 0.3, 1, 0.185817, -0.0103136, -0.0350894, 0.981903, 0.333333, 1, 0.212545, -0.00965169, -0.0348833, 0.976481, 0.4, 1, 0.208627, -0.0021343, -0.0335009, 0.977419, 0.433333, 1, 0.207854, -0.00241196, -0.0335551, 0.977581, 0.466667, 1, 0.225999, 0.00412724, -0.0322712, 0.973584, 0.5, 1, 0.22574, 0.00403385, -0.0322896, 0.973644, 0.533333, 1, 0.220829, 0.0030719, -0.0324466, 0.974768, 0.566667, 1, 0.605874, 0.168899, 0.00704088, 0.777393, 0.6, 1, 0.464581, 0.0931706, -0.0134786, 0.880513, 0.633333, 1, 0.352967, 0.0507641, -0.0227383, 0.933981, 0.666667, 1, 0.289192, 0.0271411, -0.0276499, 0.956487)
+tracks/29/type = "method"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("..")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0.166667, 0.533333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_step_sounds"
+}, {
+"args": [],
+"method": &"play_step_sounds"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_svah6"]
 resource_name = "Run Forward"
@@ -2975,6 +3010,23 @@ tracks/28/path = NodePath("Armature/Skeleton3D:mixamorig_RightToeBase")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/keys = PackedFloat32Array(0, 1, 0.282908, 0.0248357, -0.02812, 0.958413, 0.0333333, 1, 0.282908, 0.0248357, -0.02812, 0.958413, 0.0666667, 1, 0.38475, 0.0626952, -0.0201917, 0.920668, 0.1, 1, 0.503201, 0.125144, -0.00392676, 0.855051, 0.133333, 1, 0.363965, 0.110697, -0.00859324, 0.924771, 0.166667, 1, 0.217469, 0.00104922, -0.0328771, 0.975513, 0.2, 1, 0.244318, 0.01076, -0.0309558, 0.969141, 0.233333, 1, 0.303243, 0.0323107, -0.0265897, 0.951994, 0.266667, 1, 0.344121, 0.0474625, -0.0234352, 0.937432, 0.3, 1, 0.303837, 0.0325294, -0.0265446, 0.951799, 0.333333, 1, 0.238306, 0.00857976, -0.0313896, 0.970645, 0.366667, 1, 0.208732, -0.00209645, -0.0334935, 0.977397, 0.4, 1, 0.18979, -0.00889244, -0.0348148, 0.981167, 0.433333, 1, 0.181928, -0.0117037, -0.0353573, 0.982606, 0.466667, 1, 0.184978, -0.0106136, -0.0351472, 0.982056, 0.5, 1, 0.182586, -0.0114687, -0.0353121, 0.982489, 0.533333, 1, 0.190998, -0.00846013, -0.0347311, 0.980939, 0.566667, 1, 0.186551, -0.0100512, -0.0350387, 0.981769, 0.6, 1, 0.174054, -0.0145136, -0.0358972, 0.983975, 0.633333, 1, 0.189346, -0.00905147, -0.0348456, 0.98125, 0.666667, 1, 0.248911, 0.0124277, -0.0306229, 0.967962, 0.733333, 1, 0.248972, 0.0124501, -0.0306184, 0.967947, 0.766667, 1, 0.282908, 0.0248356, -0.0281201, 0.958413)
+tracks/29/type = "method"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("..")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0.2, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_step_sounds"
+}, {
+"args": [],
+"method": &"play_step_sounds"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_e6vgb"]
 resource_name = "Run Jump"
@@ -4830,6 +4882,15 @@ autoplay = "RESET"
 playback_default_blend_time = 0.1
 next/Jump = &"Fall"
 blend_times = [&"Jump", &"Fall", 0.1]
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="RuckerModel"]
+stream = ExtResource("13_0wv7w")
+volume_db = 1.614
+autoplay = true
+
+[node name="Floor ray" type="RayCast3D" parent="RuckerModel"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.00333538, 0)
+collision_mask = 2
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 visible = false

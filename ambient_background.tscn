@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl4desjk1l7su"]
+
+[ext_resource type="AudioStream" uid="uid://chcxd3dmnosaq" path="res://sounds/background/656124__itsthegoodstuff__nature-ambiance.wav" id="1_wkonu"]
+
+[node name="Ambient background" type="AudioStreamPlayer"]
+stream = ExtResource("1_wkonu")
+volume_db = -27.516
+autoplay = true

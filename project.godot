@@ -22,6 +22,7 @@ Global="*res://global.gd"
 InputUtils="*res://Utility/Global Scripts/input_utils.gd"
 MathUtils="*res://Utility/Global Scripts/math_utils.gd"
 DebugUtils="*res://Utility/Global Scripts/debug_utils.gd"
+AmbientBackground="*res://ambient_background.tscn"
 
 [display]
 
@@ -34,6 +35,10 @@ project/assembly_name="ruck-v0"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
+
+[global_group]
+
+Grass=""
 
 [input]
 
@@ -116,6 +121,7 @@ ui_hidegui={
 [layer_names]
 
 3d_render/layer_3="Player"
+3d_physics/layer_2="floor detection"
 
 [physics]
 

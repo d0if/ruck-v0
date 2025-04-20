@@ -10,11 +10,13 @@
 
 [node name="TestTerrainworld" type="Node3D"]
 
-[node name="Terrain3D" type="Terrain3D" parent="."]
+[node name="Terrain3D" type="Terrain3D" parent="." groups=["Grass"]]
 data_directory = "res://Environments/test_terrainworld/terrain_data"
 material = ExtResource("1_ikvui")
 assets = ExtResource("2_qtr8v")
 show_grid = true
+collision_layer = 3
+collision_mask = 3
 mesh_size = 32
 show_region_grid = true
 top_level = true
