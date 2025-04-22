@@ -1,6 +1,9 @@
 extends Node
 
 var show_debug = false
+var show_admin = false
+signal admin_panel_toggled(state: bool)
+signal admin_panel_closed()
 
 var debug_text_physics: String = ""
 var debug_text_process: String = ""
@@ -9,9 +12,12 @@ var debug_duration_log: Array = []
 
 var debug_text: String = ""
 
+
 func _process(delta: float) -> void:
 	show_debug = show_debug != Input.is_action_just_pressed("ui_showdebug") #toggle f3 mode
-	
+	if Input.is_action_just_pressed("ui_showadmin"):
+		admin_panel_toggled.emit(not show_admin)
+
 	debug_text = debug_text_process + "\n"
 	var half_physics_text = debug_text_physics.left(debug_text_physics.length()/2)
 	debug_text = debug_text + half_physics_text + "\n"

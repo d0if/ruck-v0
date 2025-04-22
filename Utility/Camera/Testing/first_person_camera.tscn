@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpompn6smaqds"]
+
+[ext_resource type="Script" uid="uid://b2qb3xy5es1dy" path="res://Utility/Camera/Testing/first_person_camera.gd" id="1_0f7n8"]
+
+[node name="FirstPersonCamera" type="Node3D"]
+script = ExtResource("1_0f7n8")
+
+[node name="Gimbal" type="Node3D" parent="."]
+
+[node name="Camera" type="Camera3D" parent="Gimbal"]
+current = true

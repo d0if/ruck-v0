@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b0alospdw6db3" path="res://Entities/test_bean/test_bean.gd" id="1_y1qgj"]
 [ext_resource type="Script" uid="uid://becvupbdysbl1" path="res://Player/test_rucker/test_rucker_animations.gd" id="2_fpcym"]
-[ext_resource type="PackedScene" uid="uid://bpompn6smaqds" path="res://Utility/Camera/first_person_camera.tscn" id="2_gq1k1"]
+[ext_resource type="PackedScene" uid="uid://bpompn6smaqds" path="res://Utility/Camera/Testing/first_person_camera.tscn" id="2_gq1k1"]
 [ext_resource type="Script" uid="uid://c8mmew7g1vcds" path="res://Utility/Camera/camera_utils.gd" id="2_q5wpo"]
 [ext_resource type="Texture2D" uid="uid://c8lyhw1nihyjv" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material_1.png" id="3_6ooww"]
-[ext_resource type="PackedScene" uid="uid://bamhq2uog5smj" path="res://Utility/Camera/third_person_camera.tscn" id="3_q5wpo"]
+[ext_resource type="PackedScene" uid="uid://bamhq2uog5smj" path="res://Utility/Camera/Testing/third_person_camera.tscn" id="3_q5wpo"]
 [ext_resource type="Texture2D" uid="uid://dc0a8jmjpsha6" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material.003_Metallic-Material.png" id="4_q5wpo"]
 [ext_resource type="Texture2D" uid="uid://cv6wn07u01wgq" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material.png" id="5_0wv7w"]
 [ext_resource type="Texture2D" uid="uid://bdwvbx7ks867e" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material_4.png" id="6_pnwel"]
@@ -21,9 +21,11 @@ friction = 0.5
 height = 1.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8tlvj"]
+height = 1.7
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mjw44"]
 radius = 0.49
+height = 1.7
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vaue"]
 resource_name = "Material.002"
@@ -4544,7 +4546,7 @@ transform = Transform3D(1, 0, -6.35728e-08, 0, 1, 0, 6.35728e-08, 0, 1, 0, 0, 0)
 [node name="ThirdPersonCamera" parent="CameraOrigin" instance=ExtResource("3_q5wpo")]
 
 [node name="RuckerModel" type="Node3D" parent="."]
-transform = Transform3D(-50, 0, 7.54979e-06, 0, 50, 0, -7.54979e-06, 0, -50, 0, -1, 0)
+transform = Transform3D(-50, 0, 7.54979e-06, 0, 50, 0, -7.54979e-06, 0, -50, 0, -0.85, 0)
 script = ExtResource("2_fpcym")
 
 [node name="Armature" type="Node3D" parent="RuckerModel"]
@@ -4891,6 +4893,7 @@ autoplay = true
 [node name="Floor ray" type="RayCast3D" parent="RuckerModel"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.00333538, 0)
 collision_mask = 2
+hit_from_inside = true
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 visible = false

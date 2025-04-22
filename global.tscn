@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhdq8fk77046g"]
+[gd_scene load_steps=4 format=3 uid="uid://bhdq8fk77046g"]
 
+[ext_resource type="Script" uid="uid://bjcmsae13y1rt" path="res://Utility/scene_manager.gd" id="1_2wtbm"]
 [ext_resource type="PackedScene" uid="uid://xycmanbxay3k" path="res://Environments/test_playworld_1.tscn" id="1_qxp0b"]
 [ext_resource type="PackedScene" uid="uid://b5hcic5n46hl2" path="res://Interface/debug_view.tscn" id="2_2wtbm"]
 
 [node name="Master" type="Node"]
+script = ExtResource("1_2wtbm")
 
-[node name="TestPlayworld1" parent="." instance=ExtResource("1_qxp0b")]
+[node name="Main" type="Node" parent="." groups=["main"]]
 
-[node name="DebugView" parent="." instance=ExtResource("2_2wtbm")]
+[node name="TestPlayworld1" parent="Main" instance=ExtResource("1_qxp0b")]
+
+[node name="UI" type="Node" parent="."]
+
+[node name="DebugView" parent="UI" instance=ExtResource("2_2wtbm")]
 mouse_filter = 2

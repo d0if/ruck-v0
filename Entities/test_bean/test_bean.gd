@@ -36,7 +36,7 @@ signal mvt_speed_changed(new_speed: float)
 var mvt_style_old: StringName = "RESET"
 signal mvt_style_changed(new_anim: StringName)
 
-@onready var Footsteps = $RuckerModel/Footsteps
+@onready var footsteps = $RuckerModel/Footsteps
 @onready var floor_ray = $"RuckerModel/Floor ray"
 
 
@@ -270,8 +270,8 @@ func update_animation_state() -> void:
 	mvt_style_old = mvt_style
 
 func play_step_sounds():
-	#if floor_ray. is_colliding():
+	#if floor_ray.is_colliding():
 		#var collider = floor_ray.get_collider()
 		#if collider.is_in_group("grass"):
-			Footsteps.play
-		
+	footsteps.play()
+	
