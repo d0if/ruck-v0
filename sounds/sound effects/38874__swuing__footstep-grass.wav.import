@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d35urg7e6p28j"
+path="res://.godot/imported/38874__swuing__footstep-grass.wav-ae6cc9c8c55fb6bb33ebfc9f1b15a39f.sample"
+
+[deps]
+
+source_file="res://sounds/sound effects/38874__swuing__footstep-grass.wav"
+dest_files=["res://.godot/imported/38874__swuing__footstep-grass.wav-ae6cc9c8c55fb6bb33ebfc9f1b15a39f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c6rlete0blll6" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material.001_Metallic-Material.png" id="7_0itpc"]
 [ext_resource type="Texture2D" uid="uid://koidg262djki" path="res://Player/test_rucker/source/Animations For Rucker Textured_Material_3.png" id="8_u7k8p"]
 [ext_resource type="Texture2D" uid="uid://cof7ly8hipp6r" path="res://Player/test_rucker/source/Animations For Rucker Textured_MMJETBBK.jpg" id="9_2foqp"]
-[ext_resource type="AudioStream" uid="uid://eeuk4473x7wj" path="res://sounds/sound effects/Footsteps.wav" id="13_0wv7w"]
+[ext_resource type="AudioStream" uid="uid://d35urg7e6p28j" path="res://sounds/sound effects/38874__swuing__footstep-grass.wav" id="13_0wv7w"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1vdg3"]
 friction = 0.5
@@ -4887,7 +4887,8 @@ blend_times = [&"Jump", &"Fall", 0.1]
 
 [node name="Footsteps" type="AudioStreamPlayer3D" parent="RuckerModel"]
 stream = ExtResource("13_0wv7w")
-volume_db = 1.614
+volume_db = -15.147
+max_db = 2.66
 autoplay = true
 
 [node name="Floor ray" type="RayCast3D" parent="RuckerModel"]
