@@ -1,0 +1,121 @@
+[gd_scene load_steps=15 format=3 uid="uid://umtxq88gcgrh"]
+
+[ext_resource type="Texture2D" uid="uid://d4bsmaqgk6hgr" path="res://Interface/main menu/assets/0.png" id="1_khmpa"]
+[ext_resource type="Texture2D" uid="uid://cxsiyi3v36pcl" path="res://Interface/main menu/assets/1.png" id="2_qtese"]
+[ext_resource type="Texture2D" uid="uid://1tlaobhhxfka" path="res://Interface/main menu/assets/2.png" id="3_xmbp5"]
+[ext_resource type="Texture2D" uid="uid://tjg6rmhd556h" path="res://Interface/main menu/assets/3.png" id="4_7i02o"]
+[ext_resource type="Texture2D" uid="uid://t2wxrao2dxi4" path="res://Interface/main menu/assets/4.png" id="5_ci5pd"]
+[ext_resource type="Texture2D" uid="uid://b0un1h1mkkd47" path="res://Interface/main menu/assets/5.png" id="6_40eg7"]
+[ext_resource type="Texture2D" uid="uid://dtcoi2ndqdrhg" path="res://Interface/main menu/assets/6.png" id="7_ab31v"]
+[ext_resource type="Texture2D" uid="uid://cd4i3de6sxm24" path="res://Interface/main menu/assets/7.png" id="8_dm6yi"]
+[ext_resource type="Texture2D" uid="uid://chra3plr2oav2" path="res://Interface/main menu/assets/8.png" id="9_pp0fj"]
+[ext_resource type="Texture2D" uid="uid://cln0ejdthes1c" path="res://Interface/main menu/assets/9.png" id="10_rixhs"]
+[ext_resource type="Texture2D" uid="uid://c6kitvho8npo3" path="res://Interface/main menu/assets/10.png" id="11_pvvct"]
+[ext_resource type="Texture2D" uid="uid://y7egps5tgyn0" path="res://Interface/main menu/assets/11.png" id="12_bita6"]
+[ext_resource type="Texture2D" uid="uid://cwo1ifi6shct7" path="res://Interface/main menu/assets/12.png" id="13_488mh"]
+
+[sub_resource type="GDScript" id="GDScript_nf7sm"]
+resource_name = "alignelements"
+script/source = "extends Node2D
+
+@onready var layers = $ParallaxBackground
+@onready var ruck = $Sprite2D
+
+func _process(delta: float) -> void:
+	layers.scroll_base_offset += delta * 0.5 * (-layers.scroll_base_offset + (get_viewport().get_mouse_position() - Vector2(get_viewport().size) / 2.0) * 0.1)
+	
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	layers.offset = get_viewport().size / 2.0
+	ruck.position = get_viewport().size / 2.0
+	var ratiox = get_viewport().size.x / 1920.0
+	var ratioy = get_viewport().size.y / 1080.0
+	var ratio  = min(ratiox, ratioy)
+	
+	layers.scale = Vector2(ratio, ratio)
+	ruck.scale = Vector2(ratio, ratio)
+"
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_nf7sm")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2(576, 324)
+transform = Transform2D(1, 0, 0, 1, 576, 324)
+follow_viewport_scale = 0.001
+
+[node name="ParallaxLayer0" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer0"]
+texture = ExtResource("1_khmpa")
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.05, 0.05)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer1"]
+texture = ExtResource("2_qtese")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("3_xmbp5")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.15, 0.15)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("4_7i02o")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.3)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("5_ci5pd")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource("6_40eg7")
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.7, 0.7)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+texture = ExtResource("7_ab31v")
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.8, 0.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
+texture = ExtResource("8_dm6yi")
+
+[node name="ParallaxLayer8" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.9, 0.9)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer8"]
+texture = ExtResource("9_pp0fj")
+
+[node name="ParallaxLayer9" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer9"]
+texture = ExtResource("10_rixhs")
+
+[node name="ParallaxLayer10" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1.1, 1.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer10"]
+texture = ExtResource("11_pvvct")
+
+[node name="ParallaxLayer11" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1.2, 1.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer11"]
+texture = ExtResource("12_bita6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(526, 324)
+texture = ExtResource("13_488mh")
