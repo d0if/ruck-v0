@@ -44,7 +44,7 @@ func _ready() -> void:
 	pass
 	
 func _process(delta: float) -> void:
-	angle_look = Global.angle_look
+	angle_look = CameraUtils.angle_look
 	if cam_origin: cam_origin.rotation.y = - angle_look.x
 	if InputUtils.is_pressing_any_movement_key(): #only sync rotation if moving
 		if rucker: rucker.rotation.y = MathUtils.approach_angle(rucker.rotation.y, PI - angle_look.x, delta * 10)
@@ -143,7 +143,7 @@ func _physics_process(delta: float) -> void:
 			vel_error_3d = vel_error_3d * (1.0 + 2.0 * min_contact_pitch)
 	
 	#just for viewing walk speed in debug
-	Global.angle_walk = Vector2(self.linear_velocity.x, self.linear_velocity.z)
+	CameraUtils.angle_walk = Vector2(self.linear_velocity.x, self.linear_velocity.z)
 	
 	#stop crouchslide_jumping after you land
 	if jump_collider.has_overlapping_bodies() and self.linear_velocity.y < 0:

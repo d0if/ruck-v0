@@ -5,14 +5,6 @@ var attempted_filepath: StringName = ""
 
 signal set_main_level(path: String, preload_started: bool)
 
-var zoom_float: float = 0.0 #interpolate camera between zoom levels
-enum {ZOOM_FP, ZOOM_SP, ZOOM_TP}
-var zoom_level = ZOOM_FP #use this for functionality
-signal zoom_level_changed
-
-var angle_look: Vector2
-var angle_walk: Vector2
-
 
 var settings = ConfigFile.new() #gets initialized by _load_settings()
 
@@ -52,11 +44,7 @@ func _process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			zoom_float = zoom_float + 0.05
-		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			zoom_float = zoom_float - 0.05
+	pass
 
 func _load_settings() -> Error:
 	#loads settings&makes sure that every field in settings_default is available

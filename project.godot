@@ -23,7 +23,7 @@ InputUtils="*res://Utility/Global Scripts/input_utils.gd"
 MathUtils="*res://Utility/Global Scripts/math_utils.gd"
 DebugUtils="*res://Utility/Global Scripts/debug_utils.gd"
 AmbientBackground="*res://sounds/background/ambient_background.tscn"
-CameraUtils="res://Utility/Camera/camera_utils.gd"
+CameraUtils="*res://Utility/Camera/camera_utils.gd"
 
 [display]
 

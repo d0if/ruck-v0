@@ -37,18 +37,18 @@ func _process(delta: float) -> void:
 		if ray_colliding:
 			camera.position.z = ray_length
 		else:
-			camera.position.z += 20 * delta * (1.75 + Global.zoom_float - camera.position.z)
+			camera.position.z += 20 * delta * (1.75 + CameraUtils.zoom_float - camera.position.z)
 
-		if abs(Global.angle_look.y) > ANGLE_SPRING: #1/1+10d is for keeping spring consistent @ diff framerates
-			Global.angle_look.y = camera_spring(Global.angle_look.y, 1/(1+10*delta))
+		if abs(CameraUtils.angle_look.y) > ANGLE_SPRING: #1/1+10d is for keeping spring consistent @ diff framerates
+			CameraUtils.angle_look.y = camera_spring(CameraUtils.angle_look.y, 1/(1+10*delta))
 		
 		#yaw.rotation.y = -Global.angle_look.x #temporarily removed for 3rd person
-		if pitch: pitch.rotation.x = -Global.angle_look.y
+		if pitch: pitch.rotation.x = -CameraUtils.angle_look.y
 	pass
 
 func _physics_process(delta: float) -> void:
 	#raycast from origin to intended camera position & get available length
-	rayend.position.z = 1.75 + Global.zoom_float + 2.0
+	rayend.position.z = 1.75 + CameraUtils.zoom_float + 2.0
 
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(self.global_position, rayend.global_position)
@@ -60,25 +60,25 @@ func _physics_process(delta: float) -> void:
 		ray_length = (self.global_position - result["position"]).length() - 0.05
 		#iterate through & find the shortest length
 	else:
-		ray_length = 1.75 + Global.zoom_float
-	ray_length = min(ray_length, 1.75 + Global.zoom_float)
-	#raycast.target_position.z = 1.75 + Global.zoom_float
+		ray_length = 1.75 + CameraUtils.zoom_float
+	ray_length = min(ray_length, 1.75 + CameraUtils.zoom_float)
+	#raycast.target_position.z = 1.75 + CameraUtils.zoom_float
 	#if raycast.get_collision_point() != Vector3(0, 0, 0):
 		#var length = (raycast.position - raycast.get_collision_point()).length()
 		#DebugUtils.f3_main("hit location", raycast.get_collision_point())
 		#camera.position.z += 20 * delta * (length - camera.position.z)
 	#else:
-		#camera.position.z += 20 * delta * (1.75 + Global.zoom_float - camera.position.z)
+		#camera.position.z += 20 * delta * (1.75 + CameraUtils.zoom_float - camera.position.z)
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		Global.angle_look.x = Global.angle_look.x + event.screen_relative.x * Global.settings.get_value("mouse", "sensitivity").x
-		Global.angle_look.y = Global.angle_look.y + event.screen_relative.y * Global.settings.get_value("mouse", "sensitivity").y
+		CameraUtils.angle_look.x = CameraUtils.angle_look.x + event.screen_relative.x * Global.settings.get_value("mouse", "sensitivity").x
+		CameraUtils.angle_look.y = CameraUtils.angle_look.y + event.screen_relative.y * Global.settings.get_value("mouse", "sensitivity").y
 	elif event is InputEventJoypadMotion:
 		pass
 	
-	Global.angle_look.x = MathUtils.cap_radians(Global.angle_look.x)
+	CameraUtils.angle_look.x = MathUtils.cap_radians(CameraUtils.angle_look.x)
 
 func camera_spring(pitch: float, springiness: float) -> float:
 	if pitch > ANGLE_SPRING:
