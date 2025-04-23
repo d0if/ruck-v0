@@ -1,21 +1,16 @@
 extends Node
 
-var is_active_cam: bool = true
+#var active: bool = true #instead of this, try to design UI that absorbs mouse input
 
 #children
-@onready var yaw = $OriginYaw
-@onready var pitch = $OriginYaw/OriginPitch
-@onready var dist = $OriginYaw/OriginPitch/Distance
-@onready var extra = $OriginYaw/OriginPitch/Distance/Extra
-@onready var camera = $OriginYaw/OriginPitch/Distance/Extra/Camera
-
-#zoom controls
-var thirdperson: bool = false
-var zoom_float: float = 0.0
-var zoom_accel: float = 0.1
-
-#configuration
-
+@onready var yaw = $Yaw
+@onready var pitch = $Yaw/Pitch
+@onready var dist = $Yaw/Pitch/Distance
+@onready var sway = $Yaw/Pitch/Distance/Sway
+@onready var freelook_yaw = $Yaw/Pitch/Distance/Sway/FreeYaw
+@onready var freelook_pitch = $Yaw/Pitch/Distance/Sway/FreeYaw/FreePitch
+@onready var camera = $Yaw/Pitch/Distance/Sway/FreeYaw/FreePitch/Camera3D
+@onready var rayend = $Yaw/Pitch/RayEnd
 
 ####TODO
 #Some controls to decide when camera is movable (e.g. not while in pause menu)

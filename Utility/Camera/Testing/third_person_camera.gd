@@ -38,11 +38,9 @@ func _process(delta: float) -> void:
 			camera.position.z = ray_length
 		else:
 			camera.position.z += 20 * delta * (1.75 + CameraUtils.zoom_float - camera.position.z)
-
-		if abs(CameraUtils.angle_look.y) > ANGLE_SPRING: #1/1+10d is for keeping spring consistent @ diff framerates
-			CameraUtils.angle_look.y = camera_spring(CameraUtils.angle_look.y, 1/(1+10*delta))
 		
-		#yaw.rotation.y = -Global.angle_look.x #temporarily removed for 3rd person
+		camera_spring(delta)
+		
 		if pitch: pitch.rotation.x = -CameraUtils.angle_look.y
 	pass
 
@@ -80,17 +78,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	CameraUtils.angle_look.x = MathUtils.cap_radians(CameraUtils.angle_look.x)
 
-func camera_spring(pitch: float, springiness: float) -> float:
-	if pitch > ANGLE_SPRING:
-		pitch = ANGLE_SPRING + (pitch - ANGLE_SPRING) * springiness
-		if pitch > ANGLE_MAX:
-			pitch = ANGLE_MAX
-	if pitch < -ANGLE_SPRING:
-		pitch = -ANGLE_SPRING + (pitch + ANGLE_SPRING) * springiness
-		if pitch < -ANGLE_MAX:
-			pitch = -ANGLE_MAX
-	
-	return pitch
+func camera_spring(delta: float) -> void:
+	CameraUtils.angle_look.y = MathUtils.cap_above_ease(CameraUtils.angle_look.y, ANGLE_SPRING, 1.0/(1+10*delta))
+	CameraUtils.angle_look.y = MathUtils.cap_below_ease(CameraUtils.angle_look.y,-ANGLE_SPRING, 1.0/(1+10*delta))
+	CameraUtils.angle_look.y = MathUtils.cap_above(CameraUtils.angle_look.y, ANGLE_MAX)
+	CameraUtils.angle_look.y = MathUtils.cap_below(CameraUtils.angle_look.y, -ANGLE_MAX)
 
 
 func _on_test_bean_height_changed(is_short: bool) -> void:

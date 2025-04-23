@@ -48,7 +48,7 @@ func _on_admin_panel_closed():
 func _on_refresh_button_up() -> void:
 	#remove old results, if any are found
 	for n in levelmenu.get_children():
-		if n.get_meta("path", "") != "":
+		if n.get_meta("path", "") != "": #only the default (hidden) buttons have blank path
 			levelmenu.remove_child(n)
 			n.queue_free()
 	for n in uimenu.get_children():

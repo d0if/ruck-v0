@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 		if abs(CameraUtils.angle_look.y) > ANGLE_SPRING: #1/1+10d is for keeping spring consistent @ diff framerates
 			CameraUtils.angle_look.y = camera_spring(CameraUtils.angle_look.y, 1/(1+10*delta))
 		
-		gimbal.rotation.y = -CameraUtils.angle_look.x #temporarily removed for 3rd person
+		gimbal.rotation.y = -CameraUtils.angle_look.x
 		camera.rotation.x = -CameraUtils.angle_look.y
 	pass
 
@@ -63,8 +63,8 @@ func _on_test_bean_height_changed(is_short: bool) -> void:
 		height_tween.kill()
 	
 	height_tween = create_tween()
-	var new_location = CROUCH_HEIGHT if is_short else WALK_HEIGHT
-	height_tween.tween_property(gimbal, "position:y", new_location, 0.1)
+	var new_height = CROUCH_HEIGHT if is_short else WALK_HEIGHT
+	height_tween.tween_property(gimbal, "position:y", new_height, 0.1)
 
 
 func _on_test_rucker_mvt_speed_changed(new_speed: float) -> void:

@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 	angle_look = CameraUtils.angle_look
 	if cam_origin: cam_origin.rotation.y = - angle_look.x
 	if InputUtils.is_pressing_any_movement_key(): #only sync rotation if moving
-		if rucker: rucker.rotation.y = MathUtils.approach_angle(rucker.rotation.y, PI - angle_look.x, delta * 10)
+		if rucker: rucker.rotation.y = MathUtils.approach_angle_ease(rucker.rotation.y, PI - angle_look.x, delta * 10)
 	#Global.debug("angle_look", angle_look)
 	update_animation_state()
 	mvt_speed_changed.emit(move_speed_target + self.linear_velocity.length())

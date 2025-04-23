@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxjna1mp0jmmy"]
+
+[ext_resource type="Script" uid="uid://ssgfg8erwcyo" path="res://Utility/Camera/fps_camera.gd" id="1_3n0cm"]
+
+[node name="FpsCamera" type="Node3D"]
+script = ExtResource("1_3n0cm")
+
+[node name="Yaw" type="Node3D" parent="."]
+
+[node name="Pitch" type="Node3D" parent="Yaw"]
+
+[node name="Distance" type="Node3D" parent="Yaw/Pitch"]
+
+[node name="Sway" type="Node3D" parent="Yaw/Pitch/Distance"]
+
+[node name="Camera3D" type="Camera3D" parent="Yaw/Pitch/Distance/Sway"]

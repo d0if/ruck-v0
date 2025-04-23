@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://cs0parchc8d41"]
+[gd_scene load_steps=58 format=4 uid="uid://cs0parchc8d41"]
 
 [ext_resource type="Script" uid="uid://b0alospdw6db3" path="res://Entities/test_bean/test_bean.gd" id="1_y1qgj"]
 [ext_resource type="Script" uid="uid://becvupbdysbl1" path="res://Player/test_rucker/test_rucker_animations.gd" id="2_fpcym"]
@@ -25,6 +25,8 @@ height = 1.7
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mjw44"]
 radius = 0.49
 height = 1.7
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_78lb1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vaue"]
 resource_name = "Material.002"
@@ -4504,10 +4506,6 @@ _data = {
 &"YMCA": SubResource("Animation_81y2p")
 }
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_78lb1"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_78lb1"]
-
 [node name="TestRucker" type="RigidBody3D"]
 collision_layer = 4
 axis_lock_angular_x = true
@@ -4534,6 +4532,15 @@ collision_layer = 4
 [node name="CollisionStandTaller" type="CollisionShape3D" parent="StandUp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
 shape = SubResource("CapsuleShape3D_mjw44")
+
+[node name="JumpReset" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.179764, 0)
+visible = false
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JumpReset"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("SphereShape3D_78lb1")
 
 [node name="CameraOrigin" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
@@ -4893,21 +4900,6 @@ autoplay = true
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.00333538, 0)
 collision_mask = 2
 hit_from_inside = true
-
-[node name="Mesh" type="MeshInstance3D" parent="."]
-visible = false
-layers = 4
-mesh = SubResource("CapsuleMesh_78lb1")
-skeleton = NodePath("../CollisionStand")
-
-[node name="JumpReset" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.179764, 0)
-visible = false
-collision_layer = 5
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="JumpReset"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("SphereShape3D_78lb1")
 
 [connection signal="height_changed" from="." to="." method="_on_height_changed"]
 [connection signal="height_changed" from="." to="CameraOrigin/FirstPersonCamera" method="_on_test_bean_height_changed"]
