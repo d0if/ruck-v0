@@ -4,8 +4,6 @@ const LEVELS_PATH = "res://Environments"
 const UI_PATH = "res://Interface"
 var levels_loaded: bool = false
 
-var remembered_mousemode
-
 @onready var debugview = $"Debug"
 @onready var adminview = $"Scene Selector"
 @onready var levelmenu = $"Scene Selector/HBoxContainer/scenes"
@@ -16,6 +14,9 @@ var remembered_mousemode
 func _ready() -> void:
 	DebugUtils.admin_panel_toggled.connect(_on_admin_panel_toggled)
 	DebugUtils.admin_panel_closed.connect(_on_admin_panel_closed)
+	
+	debugview.visible = false
+	adminview.visible = false
 
 
 func _process(delta: float) -> void:
@@ -26,12 +27,11 @@ func _on_admin_panel_toggled(state: bool):
 	if state:
 		DebugUtils.show_admin = true
 		adminview.visible = true
-		remembered_mousemode = Input.mouse_mode
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
 		DebugUtils.show_admin = false
 		adminview.visible = false
-		Input.mouse_mode = remembered_mousemode
+		Input.mouse_mode = Global.default_scene_mousemode
 		return
 	
 	#we are loading the admin panel, so scan the environments folder for playable levels

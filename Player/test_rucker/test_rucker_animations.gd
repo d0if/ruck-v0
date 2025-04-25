@@ -41,16 +41,16 @@ func _process(delta: float) -> void:
 		unrootedAnimator.play(animations[ANIM_YMCA])
 	
 
-func _on_test_rucker_mvt_style_changed(new_style: StringName) -> void:
+func _on_test_rucker_mvt_style_changed(new_anim: StringName, old_anim: StringName) -> void:
 	#possible movement (animation) states:
 	#idle, walk_front/back/left/right, crouched, crouch_front (no back/left/right yet),
 	#jumped, flying, landed, run_front/back (no left/right yet), sliding
-	DebugUtils.f3_log(new_style)
+	DebugUtils.f3_log(new_anim)
 	
-	if new_style != "idle" and emoting:
+	if new_anim != "idle" and emoting:
 		emoting = false
 	
-	match new_style:
+	match new_anim:
 		"idle":
 			if not emoting:
 				unrootedAnimator.play(animations[ANIM_STANDIDLE])

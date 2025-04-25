@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ke6fxlxk2xx0"]
+[gd_scene load_steps=9 format=3 uid="uid://ke6fxlxk2xx0"]
 
 [ext_resource type="Terrain3DMaterial" uid="uid://bje4e23kirgcg" path="res://Environments/test_terrainworld/test_terrainworld_terrain3dmaterial.res" id="1_ikvui"]
 [ext_resource type="Terrain3DAssets" uid="uid://i08qad6k60fh" path="res://Environments/test_terrainworld/test_terrainworld_terrain3dassets.res" id="2_qtr8v"]
@@ -8,7 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://b12id8l5bynxg" path="res://Assets Temp Renamed/rock_and_tree/rock_average/rock_average.glb" id="7_67ung"]
 [ext_resource type="PackedScene" uid="uid://dwrubov442o4y" path="res://Assets Temp Renamed/rock_and_tree/rock_short/rock_short.glb" id="8_qwd1l"]
 
+[sub_resource type="GDScript" id="GDScript_rmxsb"]
+resource_name = "test_terrainworld"
+script/source = "extends Node3D
+
+func _ready() -> void:
+	Global.set_scene_default_mousemode.emit(Input.MOUSE_MODE_CAPTURED)
+"
+
 [node name="TestTerrainworld" type="Node3D"]
+script = SubResource("GDScript_rmxsb")
 
 [node name="Terrain3D" type="Terrain3D" parent="." groups=["Grass"]]
 data_directory = "res://Environments/test_terrainworld/terrain_data"

@@ -26,7 +26,7 @@ var short: bool = false
 
 @onready var rucker = $RuckerModel
 @onready var rucker_model = $RuckerModel/Armature
-@onready var cam_origin = $CameraOrigin
+#@onready var cam_origin = $CameraOrigin
 
 @onready var stand_hitbox = $CollisionStand
 @onready var crouch_hitbox = $CollisionCrouch
@@ -34,7 +34,7 @@ signal height_changed(is_short: bool)
 signal mvt_speed_changed(new_speed: float)
 
 var mvt_style_old: StringName = "RESET"
-signal mvt_style_changed(new_anim: StringName)
+signal mvt_style_changed(new_anim: StringName, old_anim: StringName)
 
 @onready var footsteps = $RuckerModel/Footsteps
 @onready var floor_ray = $"RuckerModel/Floor ray"
@@ -45,7 +45,7 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	angle_look = CameraUtils.angle_look
-	if cam_origin: cam_origin.rotation.y = - angle_look.x
+	#if cam_origin: cam_origin.rotation.y = - angle_look.x
 	if InputUtils.is_pressing_any_movement_key(): #only sync rotation if moving
 		if rucker: rucker.rotation.y = MathUtils.approach_angle_ease(rucker.rotation.y, PI - angle_look.x, delta * 10)
 	#Global.debug("angle_look", angle_look)
@@ -103,7 +103,7 @@ func _physics_process(delta: float) -> void:
 	
 	else: #not holding crouch, try to get tall
 		if not stand_collider.has_overlapping_bodies():
-			height_changed.emit(false) #change height to tall
+			if short: height_changed.emit(false) #change height to tall
 	
 	#must pass all these conditions to continue a crouchslide
 	var ok_to_crouchslide = false
@@ -266,7 +266,7 @@ func update_animation_state() -> void:
 	#if animation_state != old_animation_state:
 	if mvt_style != mvt_style_old:
 		if mvt_style != "UNSET":
-			mvt_style_changed.emit(mvt_style)
+			mvt_style_changed.emit(mvt_style, mvt_style_old)
 	mvt_style_old = mvt_style
 
 func play_step_sounds():

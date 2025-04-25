@@ -5,12 +5,20 @@
 [node name="FpsCamera" type="Node3D"]
 script = ExtResource("1_3n0cm")
 
-[node name="Yaw" type="Node3D" parent="."]
+[node name="Height" type="Node3D" parent="."]
 
-[node name="Pitch" type="Node3D" parent="Yaw"]
+[node name="Yaw" type="Node3D" parent="Height"]
 
-[node name="Distance" type="Node3D" parent="Yaw/Pitch"]
+[node name="Pitch" type="Node3D" parent="Height/Yaw"]
 
-[node name="Sway" type="Node3D" parent="Yaw/Pitch/Distance"]
+[node name="RayEnd" type="Node3D" parent="Height/Yaw/Pitch"]
 
-[node name="Camera3D" type="Camera3D" parent="Yaw/Pitch/Distance/Sway"]
+[node name="Distance" type="Node3D" parent="Height/Yaw/Pitch"]
+
+[node name="Sway" type="Node3D" parent="Height/Yaw/Pitch/Distance"]
+
+[node name="FreeYaw" type="Node3D" parent="Height/Yaw/Pitch/Distance/Sway"]
+
+[node name="FreePitch" type="Node3D" parent="Height/Yaw/Pitch/Distance/Sway/FreeYaw"]
+
+[node name="Camera3D" type="Camera3D" parent="Height/Yaw/Pitch/Distance/Sway/FreeYaw/FreePitch"]

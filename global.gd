@@ -5,6 +5,8 @@ var attempted_filepath: StringName = ""
 
 signal set_main_level(path: String, preload_started: bool)
 
+signal set_scene_default_mousemode(mousemode: Input.MouseMode)
+var default_scene_mousemode: Input.MouseMode = Input.MOUSE_MODE_VISIBLE
 
 var settings = ConfigFile.new() #gets initialized by _load_settings()
 
@@ -14,7 +16,8 @@ func _ready() -> void:
 	#Load settings
 	if !_load_settings() == OK: print("Settings failed to load.")
 	
-	
+	#Connect mousemode signal
+	set_scene_default_mousemode.connect(_set_scene_default_mousemode)
 	pass # Replace with function body.
 
 
@@ -112,3 +115,7 @@ func getFilePathsByExtension(directoryPath: String, extension: String, recursive
 		fileName = dir.get_next()
 	
 	return filePaths
+
+func _set_scene_default_mousemode(mousemode: Input.MouseMode):
+	default_scene_mousemode = mousemode
+	Input.mouse_mode = mousemode
