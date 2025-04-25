@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxjna1mp0jmmy"]
+[gd_scene load_steps=3 format=3 uid="uid://bxjna1mp0jmmy"]
 
 [ext_resource type="Script" uid="uid://ssgfg8erwcyo" path="res://Utility/Camera/fps_camera.gd" id="1_3n0cm"]
+[ext_resource type="Material" uid="uid://c55fqa7s44sak" path="res://Materials/Rendering/vignette.material" id="2_xnh5v"]
 
 [node name="FpsCamera" type="Node3D"]
 script = ExtResource("1_3n0cm")
@@ -22,3 +23,12 @@ script = ExtResource("1_3n0cm")
 [node name="FreePitch" type="Node3D" parent="Height/Yaw/Pitch/Distance/Sway/FreeYaw"]
 
 [node name="Camera3D" type="Camera3D" parent="Height/Yaw/Pitch/Distance/Sway/FreeYaw/FreePitch"]
+
+[node name="Vignette" type="ColorRect" parent="Height/Yaw/Pitch/Distance/Sway/FreeYaw/FreePitch/Camera3D"]
+material = ExtResource("2_xnh5v")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

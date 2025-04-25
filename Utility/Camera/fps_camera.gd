@@ -12,6 +12,8 @@ extends Node3D
 @onready var freelook_pitch = $Height/Yaw/Pitch/Distance/Sway/FreeYaw/FreePitch
 @onready var camera = $Height/Yaw/Pitch/Distance/Sway/FreeYaw/FreePitch/Camera3D
 
+@onready var vignette = $Height/Yaw/Pitch/Distance/Sway/FreeYaw/FreePitch/Camera3D/Vignette
+
 @onready var rayend = $Height/Yaw/Pitch/RayEnd
 var ray_colliding: bool = false
 var ray_length: float = 0.0
@@ -86,8 +88,9 @@ func _process(delta: float) -> void:
 					delta / 0.15)
 	
 	#fov effects. also see _on_test_rucker_mvt_speed_changed()
-	camera.fov = MathUtils.approach_ease(camera.fov, target_fov, 10.0 * delta)
+	camera.fov = MathUtils.approach_ease(camera.fov, target_fov + 3.0 * CameraUtils.transition, 10.0 * delta)
 	
+	vignette.material.set_shader_parameter("vignette_strength", abs(CameraUtils.transition) / (CameraUtils.TRANSITION_MINIMUM_SCROLLS * CameraUtils.TRANSITION_TICK))
 
 func _physics_process(delta: float) -> void:
 	#raycast collision when in third person mode
@@ -160,6 +163,8 @@ func _on_test_rucker_mvt_style_changed(new_anim: StringName, old_anim: StringNam
 			sway_frequency = Vector2(0.341, 0.2)
 			sway_bounce = false
 		"walk_front", "walk_back", "walk_left", "walk_right":
+			#for a walk animation with 2 steps over .7666 sec, use (2step/.7666sec)/2 ~= 1.304
+			#for y-frequency (halve it since abs(sin) bounces twice for each rotation)
 			sway_amplitude_target = Vector2(0.0, 0.1)
 			sway_frequency = Vector2(0.0, 1.304)
 			sway_bounce = true
