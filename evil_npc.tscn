@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://ux7fukdmturh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_74g4x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uu7et"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d7uie"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_75ehe"]
+
+[node name="EVIL NPC" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_74g4x")
+surface_material_override/0 = SubResource("StandardMaterial3D_uu7et")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+
+[node name="enemy collision" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+shape = SubResource("CapsuleShape3D_d7uie")
+
+[node name="detection sphere" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_75ehe")
