@@ -3,7 +3,7 @@ extends Node
 enum {ZOOM_FPS, ZOOM_TPS, ZOOM_FREE, ZOOM_RTS}
 var zoom_level = ZOOM_FPS #use this for functionality
 var zoom_level_old = ZOOM_FPS
-signal zoom_level_changed(new_level)
+signal zoom_level_changed(new_level, old_level)
 
 var zoom_input: float = 0.0 #like zoom_float, but doesn't get capped. excess is used for transitions
 var zoom_float: float = 0.0 #in TPS, controls distance to 3rd person cam. in freecam, controls height. in RTS, controls zoom
@@ -25,6 +25,7 @@ const TRANSITION_MINIMUM_SCROLLS: int = 8
 var transition_cooldown: float = 0.0 #needs to be 0.0 for transition to happen. only decrements when at ZFMIN or ZFMAX
 var TRANSITION_MINIMUM_COOLDOWN: float = 0.6
 
+var global_cam_position: Vector3
 var angle_look: Vector2
 var angle_walk: Vector2
 
@@ -71,7 +72,7 @@ func _process(delta: float) -> void:
 			zoom_accel = 0.1
 			transition = 0.0
 			transition_cooldown = TRANSITION_MINIMUM_COOLDOWN
-			zoom_level_changed.emit(zoom_level)
+			zoom_level_changed.emit(zoom_level, zoom_level_old)
 			zoom_level_old = zoom_level
 	
 	DebugUtils.f3_main("transition cooldown", transition_cooldown)
@@ -130,7 +131,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				zoom_accel = MathUtils.cap_above(zoom_accel, 2.5)
 
 func camera_spring(delta: float, angle_ease_high: float, angle_ease_low: float, angle_firm_high: float, angle_firm_low: float) -> void:
-	angle_look.y = MathUtils.cap_above_ease(angle_look.y, angle_ease_high, 1.0/(1+10*delta))
-	angle_look.y = MathUtils.cap_below_ease(angle_look.y, angle_ease_low , 1.0/(1+10*delta))
+	angle_look.y = MathUtils.cap_above_ease(angle_look.y, angle_ease_high, 1.0 - 1.0/(1+10*delta))
+	angle_look.y = MathUtils.cap_below_ease(angle_look.y, angle_ease_low , 1.0 - 1.0/(1+10*delta))
 	angle_look.y = MathUtils.cap_above(angle_look.y, angle_firm_high)
 	angle_look.y = MathUtils.cap_below(angle_look.y, angle_firm_low )

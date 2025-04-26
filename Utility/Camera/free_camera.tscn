@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://nhncunj6expn"]
+
+[ext_resource type="Script" uid="uid://cih28uf34clqw" path="res://Utility/Camera/free_camera.gd" id="1_hppfj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hppfj"]
+radius = 0.1
+
+[node name="FreeCamera" type="RigidBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+gravity_scale = 0.0
+script = ExtResource("1_hppfj")
+
+[node name="Yaw" type="Node3D" parent="."]
+
+[node name="Pitch" type="Node3D" parent="Yaw"]
+
+[node name="Sway" type="Node3D" parent="Yaw/Pitch"]
+
+[node name="Camera3D" type="Camera3D" parent="Yaw/Pitch/Sway"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_hppfj")
+
+[node name="Rayend" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
