@@ -42,8 +42,8 @@ var target_fov: float = 75.0
 #toggle visibility mask for first/third person (can't see player in first person)
 
 func _ready() -> void:
-	CameraUtils.zoom_level_changed.connect(_change_fps_tps)
-	_change_fps_tps(CameraUtils.zoom_level) #initialize cull mask & other fps/tps stuff
+	CameraUtils.zoom_level_changed.connect(_handle_zoom_change)
+	_handle_zoom_change(CameraUtils.zoom_level, CameraUtils.zoom_level_old) #initialize cull mask & other fps/tps stuff
 
 func _process(delta: float) -> void:
 	#camera springiness
@@ -56,9 +56,10 @@ func _process(delta: float) -> void:
 	#update cam distance. note that the raycast (rayend) distance gets updated in _physics_process()
 	#decide between first person and third person camera
 	if CameraUtils.zoom_level == CameraUtils.ZOOM_TPS:
-		dist.position.z = MathUtils.approach_ease(dist.position.z, #current
-				MathUtils.cap_above(1.0 + CameraUtils.zoom_float, ray_length), #target
-				delta * 4.0) #easing rate
+		dist.position.z = MathUtils.cap_above(MathUtils.approach_ease(dist.position.z, #current
+					1.0 + CameraUtils.zoom_float, #target
+					delta * 4.0), ray_length - 0.2) #easing rate, hard cap
+		
 	else:
 		#dist.position.z = MathUtils.approach_ease(dist.position.z, 0.0, delta * 3.0)
 		dist.position.z = 0.0
@@ -91,6 +92,9 @@ func _process(delta: float) -> void:
 	camera.fov = MathUtils.approach_ease(camera.fov, target_fov + 3.0 * CameraUtils.transition, 10.0 * delta)
 	
 	vignette.material.set_shader_parameter("vignette_strength", abs(CameraUtils.transition) / (CameraUtils.TRANSITION_MINIMUM_SCROLLS * CameraUtils.TRANSITION_TICK))
+	
+	if CameraUtils.zoom_level == CameraUtils.ZOOM_FPS or CameraUtils.zoom_level == CameraUtils.ZOOM_TPS:
+		CameraUtils.global_cam_position = dist.global_position
 
 func _physics_process(delta: float) -> void:
 	#raycast collision when in third person mode
@@ -112,22 +116,23 @@ func _physics_process(delta: float) -> void:
 		ray_length = min(ray_length, 1.0 + CameraUtils.zoom_float)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		CameraUtils.angle_look.x = CameraUtils.angle_look.x + event.screen_relative.x * Global.settings.get_value("mouse", "sensitivity").x
-		CameraUtils.angle_look.y = CameraUtils.angle_look.y + event.screen_relative.y * Global.settings.get_value("mouse", "sensitivity").y
-	elif event is InputEventJoypadMotion:
-		pass
-	
-	CameraUtils.angle_look.x = MathUtils.cap_radians(CameraUtils.angle_look.x)
+	if CameraUtils.zoom_level == CameraUtils.ZOOM_FPS or CameraUtils.zoom_level == CameraUtils.ZOOM_TPS:
+		if event is InputEventMouseMotion:
+			CameraUtils.angle_look.x = CameraUtils.angle_look.x + event.screen_relative.x * Global.settings.get_value("mouse", "sensitivity").x
+			CameraUtils.angle_look.y = CameraUtils.angle_look.y + event.screen_relative.y * Global.settings.get_value("mouse", "sensitivity").y
+		elif event is InputEventJoypadMotion:
+			pass
+		
+		CameraUtils.angle_look.x = MathUtils.cap_radians(CameraUtils.angle_look.x)
 
-func _change_fps_tps(new_state) -> void:
+func _handle_zoom_change(new_state, old_state) -> void:
 	match new_state:
-		CameraUtils.ZOOM_FPS:
-			camera.set_cull_mask_value(3, false) #player is on layer 3, hide it in fps
-		CameraUtils.ZOOM_TPS:
-			camera.set_cull_mask_value(3,  true)
+		CameraUtils.ZOOM_FPS, CameraUtils.ZOOM_TPS:
+			dist.position.z = Vector3(height.global_position - CameraUtils.global_cam_position).length()
+			camera.make_current()
+			camera.set_cull_mask_value(3, new_state == CameraUtils.ZOOM_TPS) #player is on layer 3, hide it in fps
 		_:
-			DebugUtils.f3_log("swapped to fps/tps but passed the wrong zoom level")
+			pass
 
 func _check_sway_invert() -> void:
 	if sin(_sway_angle.y + sway_phase.y) < 0.0:
