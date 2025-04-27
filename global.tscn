@@ -15,6 +15,7 @@ script = ExtResource("1_2wtbm")
 [node name="UI" type="Node" parent="."]
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("3_8tbuy")]
+visible = false
 
 [node name="DebugView" parent="UI" instance=ExtResource("2_2wtbm")]
 mouse_filter = 2
