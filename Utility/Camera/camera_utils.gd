@@ -33,6 +33,7 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
+	DebugUtils.f3_main("global cam position", global_cam_position)
 	
 	#zoom_input should attempt to stay within bounds. excess gets used as transition
 	zoom_input = MathUtils.cap_above_line(zoom_input, ZOOM_FLOAT_MAX[zoom_level], 0.01)

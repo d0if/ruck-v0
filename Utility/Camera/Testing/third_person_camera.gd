@@ -69,14 +69,14 @@ func _physics_process(delta: float) -> void:
 		#camera.position.z += 20 * delta * (1.75 + CameraUtils.zoom_float - camera.position.z)
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		CameraUtils.angle_look.x = CameraUtils.angle_look.x + event.screen_relative.x * Global.settings.get_value("mouse", "sensitivity").x
-		CameraUtils.angle_look.y = CameraUtils.angle_look.y + event.screen_relative.y * Global.settings.get_value("mouse", "sensitivity").y
-	elif event is InputEventJoypadMotion:
-		pass
+#func _unhandled_input(event: InputEvent) -> void:
+	#if event is InputEventMouseMotion:
+		#CameraUtils.angle_look.x = CameraUtils.angle_look.x + event.screen_relative.x * Global.settings.get_value("mouse", "sensitivity").x
+		#CameraUtils.angle_look.y = CameraUtils.angle_look.y + event.screen_relative.y * Global.settings.get_value("mouse", "sensitivity").y
+	#elif event is InputEventJoypadMotion:
+		#pass
 	
-	CameraUtils.angle_look.x = MathUtils.cap_radians(CameraUtils.angle_look.x)
+	#CameraUtils.angle_look.x = MathUtils.cap_radians(CameraUtils.angle_look.x)
 
 func camera_spring(delta: float) -> void:
 	CameraUtils.angle_look.y = MathUtils.cap_above_ease(CameraUtils.angle_look.y, ANGLE_SPRING, 1.0/(1+10*delta))

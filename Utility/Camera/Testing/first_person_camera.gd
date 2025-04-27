@@ -36,14 +36,14 @@ func _process(delta: float) -> void:
 		camera.rotation.x = -CameraUtils.angle_look.y
 	pass
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		CameraUtils.angle_look.x = CameraUtils.angle_look.x + event.screen_relative.x * Global.settings.get_value("mouse", "sensitivity").x
-		CameraUtils.angle_look.y = CameraUtils.angle_look.y + event.screen_relative.y * Global.settings.get_value("mouse", "sensitivity").y
-	elif event is InputEventJoypadMotion:
-		pass
-	
-	CameraUtils.angle_look.x = MathUtils.cap_radians(CameraUtils.angle_look.x)
+#func _unhandled_input(event: InputEvent) -> void:
+	#if event is InputEventMouseMotion:
+		#CameraUtils.angle_look.x = CameraUtils.angle_look.x + event.screen_relative.x * Global.settings.get_value("mouse", "sensitivity").x
+		#CameraUtils.angle_look.y = CameraUtils.angle_look.y + event.screen_relative.y * Global.settings.get_value("mouse", "sensitivity").y
+	#elif event is InputEventJoypadMotion:
+		#pass
+	#
+	#CameraUtils.angle_look.x = MathUtils.cap_radians(CameraUtils.angle_look.x)
 
 func camera_spring(pitch: float, springiness: float) -> float:
 	if pitch > ANGLE_SPRING:

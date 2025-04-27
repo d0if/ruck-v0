@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6d7ca6e5fvu0"]
+
+[ext_resource type="Material" uid="uid://srgtajgik2pu" path="res://Materials/shaders/blur_dark.material" id="1_v435r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ncn56"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_44xj2"]
+thickness = 0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ky4a4"]
+thickness = 0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ioe41"]
+thickness = 0
+vertical = true
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+texture_filter = 1
+material = ExtResource("1_v435r")
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ncn56")
+current_tab = 0
+clip_tabs = false
+tabs_visible = false
+
+[node name="Normal Settings" type="HSplitContainer" parent="MarginContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Normal Settings"]
+layout_mode = 2
+alignment = 1
+
+[node name="Resume" type="Button" parent="MarginContainer/TabContainer/Normal Settings/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/TabContainer/Normal Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_44xj2")
+
+[node name="Controls" type="Button" parent="MarginContainer/TabContainer/Normal Settings/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+alignment = 0
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/TabContainer/Normal Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_ky4a4")
+
+[node name="Home" type="Button" parent="MarginContainer/TabContainer/Normal Settings/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+alignment = 0
+
+[node name="Quit" type="Button" parent="MarginContainer/TabContainer/Normal Settings/VBoxContainer"]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+text = "Quit to Desktop"
+alignment = 0
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/TabContainer/Normal Settings"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_ioe41")

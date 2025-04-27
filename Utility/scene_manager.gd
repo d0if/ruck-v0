@@ -1,5 +1,10 @@
 extends Node
 
+#things that scenes need to tell the scene manager when they load:
+#should you be able to pause from here/what should the pause menu look like from here?
+#what's the default mouse mode for this scene?
+#
+
 @onready var mainlevelcontainer = $Main
 
 var defaultscene: bool = true
