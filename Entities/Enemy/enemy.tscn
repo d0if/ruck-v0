@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cohvjhisyu1kl"]
+
+[ext_resource type="Script" uid="uid://cabo6t4eyrfl0" path="res://Entities/Enemy/enemy.gd" id="1_7k104"]
+[ext_resource type="ArrayMesh" uid="uid://dpfitay8vffwo" path="res://Entities/Enemy/head.res" id="2_xugip"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iifgy"]
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_7k104")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-3.5, 0, -3.0598e-07, 0, 3.5, 0, 3.0598e-07, 0, -3.5, 0.0112486, 0, -0.0120202)
+mesh = ExtResource("2_xugip")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_iifgy")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 1.5
+avoidance_enabled = true
