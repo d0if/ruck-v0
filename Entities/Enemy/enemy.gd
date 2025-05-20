@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed = 13.2
+@export var speed = 10
 @export var target: Node3D
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
@@ -8,6 +8,7 @@ extends CharacterBody3D
 
 func _ready() -> void:
 	if not target: _set_target()
+	_update_target_position()
 
 func _set_target():
 	target = get_tree().get_first_node_in_group("player")
