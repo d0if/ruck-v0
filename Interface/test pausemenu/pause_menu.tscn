@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6d7ca6e5fvu0"]
+[gd_scene load_steps=11 format=3 uid="uid://b6d7ca6e5fvu0"]
 
 [ext_resource type="Script" uid="uid://c5mqrc8j6kjvn" path="res://Interface/test pausemenu/pause_menu.gd" id="1_ncn56"]
 [ext_resource type="Material" uid="uid://srgtajgik2pu" path="res://Materials/shaders/blur_dark.material" id="1_v435r"]
+[ext_resource type="PackedScene" uid="uid://mlwvbilcjdfa" path="res://Interface/test pausemenu/audio_settings.tscn" id="3_ioe41"]
+[ext_resource type="PackedScene" uid="uid://bp8b2moovjvlh" path="res://Interface/test pausemenu/video_settings.tscn" id="4_8n3gc"]
+[ext_resource type="PackedScene" uid="uid://cuo1doikhq36s" path="res://Interface/test pausemenu/controls.tscn" id="5_8ou1b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ncn56"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -30,6 +33,7 @@ grow_vertical = 2
 script = ExtResource("1_ncn56")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 texture_filter = 1
 material = ExtResource("1_v435r")
 layout_mode = 2
@@ -99,13 +103,39 @@ alignment = 0
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_ioe41")
 
-[node name="Settings Main" type="HSplitContainer" parent="MarginContainer/TabContainer"]
+[node name="Settings Main" type="HBoxContainer" parent="MarginContainer/TabContainer"]
 layout_mode = 2
 metadata/_tab_index = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Settings Main"]
 layout_mode = 2
+alignment = 1
+
+[node name="Back" type="Button" parent="MarginContainer/TabContainer/Settings Main/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/TabContainer/Settings Main/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_44xj2")
+
+[node name="Controls" type="Button" parent="MarginContainer/TabContainer/Settings Main/VBoxContainer"]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+text = "View / Edit Controls"
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/TabContainer/Settings Main"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_8n3gc")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/TabContainer/Settings Main"]
+layout_mode = 2
+
+[node name="Audio" parent="MarginContainer/TabContainer/Settings Main/VBoxContainer2" instance=ExtResource("3_ioe41")]
+layout_mode = 2
+
+[node name="Video" parent="MarginContainer/TabContainer/Settings Main/VBoxContainer2" instance=ExtResource("4_8n3gc")]
+layout_mode = 2
+
+[node name="Controls" parent="MarginContainer/TabContainer/Settings Main" instance=ExtResource("5_8ou1b")]
+layout_mode = 2

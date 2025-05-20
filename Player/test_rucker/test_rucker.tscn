@@ -4519,9 +4519,11 @@ script = ExtResource("1_y1qgj")
 
 [node name="CollisionCrouch" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+visible = false
 shape = SubResource("CapsuleShape3D_78lb1")
 
 [node name="CollisionStand" type="CollisionShape3D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape3D_8tlvj")
 
 [node name="StandUp" type="Area3D" parent="."]

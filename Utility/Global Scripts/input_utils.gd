@@ -1,5 +1,21 @@
 extends Node
 
+#for controls menu
+var listening: bool = false
+var listen_params
+signal start_listening(params)
+
+#var test = "InputEventKey: keycode=65 (A), mods=none, physical=false, location=unspecified, pressed=false, echo=false"
+
+#func _input(event: InputEvent) -> void:
+	#print(JSON.stringify(event))
+	#var data = JSON.parse_string(test)
+	#if typeof(data) == typeof(InputEventKey):
+		#print(data.as_text())
+	#else:
+		#print("wrong type")
+		
+	
 func is_pressing_any_movement_key(include_forward = true, include_backward = true, include_left = true, 
 		include_right = true, include_jump = true, include_crouch = true, include_sprint = true, 
 		include_emotes = false):
