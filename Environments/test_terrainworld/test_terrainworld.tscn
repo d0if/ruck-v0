@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cs0parchc8d41" path="res://Player/test_rucker/test_rucker.tscn" id="3_tx5qi"]
 [ext_resource type="Environment" uid="uid://cb2586nrunvi2" path="res://Materials/Rendering/test_environment.tres" id="4_tx5qi"]
 [ext_resource type="CameraAttributesPractical" uid="uid://d2jnmiyqg0la" path="res://Materials/Rendering/test_camera.tres" id="5_j3uw3"]
-[ext_resource type="PackedScene" uid="uid://b12id8l5bynxg" path="res://Assets Temp Renamed/rock_and_tree/rock_average/rock_average.glb" id="7_67ung"]
-[ext_resource type="PackedScene" uid="uid://dwrubov442o4y" path="res://Assets Temp Renamed/rock_and_tree/rock_short/rock_short.glb" id="8_qwd1l"]
+[ext_resource type="PackedScene" uid="uid://b12id8l5bynxg" path="res://Assets/rock_and_tree/rock_average/rock_average.glb" id="7_67ung"]
+[ext_resource type="PackedScene" uid="uid://dwrubov442o4y" path="res://Assets/rock_and_tree/rock_short/rock_short.glb" id="8_qwd1l"]
 
 [sub_resource type="GDScript" id="GDScript_rmxsb"]
 resource_name = "test_terrainworld"

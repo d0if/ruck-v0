@@ -1,0 +1,13 @@
+{
+  "BINDS": [
+	{
+	  "input": "\"game_forward\"",
+	  "name": "\"Move Forward\"",
+	  "bind": "",
+	  "deadzone": -1.0,
+	  "accept_mouse": false,
+	  "accept_escape": false,
+	  "accept_modifier": false
+	}
+  ]
+}

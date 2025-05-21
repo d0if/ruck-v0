@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dch4t6tokpe34"]
 
-[ext_resource type="PackedScene" uid="uid://cdy8yb8i0h8o" path="res://Assets Temp Renamed/rock_and_tree/stylized_tree/stylized tree.glb" id="1_teje7"]
+[ext_resource type="PackedScene" uid="uid://cdy8yb8i0h8o" path="res://Assets/rock_and_tree/stylized_tree/stylized tree.glb" id="1_teje7"]
 [ext_resource type="Texture2D" uid="uid://djwheq3jy61bc" path="res://Materials/leaf cluster.png" id="2_jdegw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cecg5"]
