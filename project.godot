@@ -41,6 +41,7 @@ enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
 
 Grass=""
 Selectable=""
+Selected=""
 
 [input]
 

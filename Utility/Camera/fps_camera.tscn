@@ -23,8 +23,9 @@ script = ExtResource("1_3n0cm")
 
 [node name="FreePitch" type="Node3D" parent="Height/Yaw/Pitch/Distance/Sway/FreeYaw"]
 
-[node name="Camera3D" type="Camera3D" parent="Height/Yaw/Pitch/Distance/Sway/FreeYaw/FreePitch"]
+[node name="Camera3D" type="Camera3D" parent="Height/Yaw/Pitch/Distance/Sway/FreeYaw/FreePitch" node_paths=PackedStringArray("selectray")]
 script = ExtResource("2_ox8ig")
+selectray = NodePath("RayCast3D")
 
 [node name="Vignette" type="ColorRect" parent="Height/Yaw/Pitch/Distance/Sway/FreeYaw/FreePitch/Camera3D"]
 material = ExtResource("2_xnh5v")
@@ -38,3 +39,4 @@ metadata/_edit_use_anchors_ = true
 
 [node name="RayCast3D" type="RayCast3D" parent="Height/Yaw/Pitch/Distance/Sway/FreeYaw/FreePitch/Camera3D"]
 target_position = Vector3(0, 0, -10.06)
+collide_with_areas = true
