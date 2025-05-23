@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://deu1xfcdvpr30"]
+[gd_scene load_steps=58 format=4 uid="uid://deu1xfcdvpr30"]
 
 [ext_resource type="Script" uid="uid://welru4syahvt" path="res://Controllers/Player/dumb_controller.gd" id="1_cluhl"]
 [ext_resource type="Script" uid="uid://becvupbdysbl1" path="res://Player/test_rucker/test_rucker_animations.gd" id="2_2nsin"]
@@ -14,6 +14,10 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1vdg3"]
 friction = 0.5
+
+[sub_resource type="Curve" id="Curve_cluhl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_78lb1"]
 height = 1.5
@@ -4516,6 +4520,7 @@ gravity_scale = 3.0
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_cluhl")
+ANGLE_VELOCITY_PUNISHMENT = SubResource("Curve_cluhl")
 
 [node name="CollisionCrouch" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
