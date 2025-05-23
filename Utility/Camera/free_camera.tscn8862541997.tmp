@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://nhncunj6expn"]
+[gd_scene load_steps=5 format=3 uid="uid://nhncunj6expn"]
 
 [ext_resource type="Script" uid="uid://cih28uf34clqw" path="res://Utility/Camera/free_camera.gd" id="1_hppfj"]
 [ext_resource type="Script" uid="uid://beu32brj66776" path="res://Utility/Camera/Free_camera_3d.gd" id="2_2ypdy"]
+[ext_resource type="Script" uid="uid://krtocvh8v1tu" path="res://Utility/Camera/mesh_instance_3dfreecam.gd" id="3_w3u80"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hppfj"]
 radius = 0.1
@@ -19,9 +20,8 @@ script = ExtResource("1_hppfj")
 
 [node name="Sway" type="Node3D" parent="Yaw/Pitch"]
 
-[node name="Camera3D" type="Camera3D" parent="Yaw/Pitch/Sway" node_paths=PackedStringArray("selection_box")]
+[node name="Camera3D" type="Camera3D" parent="Yaw/Pitch/Sway"]
 script = ExtResource("2_2ypdy")
-selection_box = NodePath("../../../../CanvasLayer/ColorRect")
 
 [node name="RayCast3D" type="RayCast3D" parent="Yaw/Pitch/Sway/Camera3D"]
 
@@ -35,4 +35,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 visible = false
-color = Color(1, 1, 1, 0.313726)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.580392)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+script = ExtResource("3_w3u80")
