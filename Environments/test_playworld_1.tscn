@@ -8247,6 +8247,7 @@ environment = ExtResource("1_0he6h")
 camera_attributes = ExtResource("2_frd3d")
 
 [node name="base play world" type="Node3D" parent="." groups=["navigation_mesh_source_group"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.207501, -0.149855, -0.0296726)
 
 [node name="Plane" type="MeshInstance3D" parent="base play world" groups=["Grass", "navigation_mesh_source_group"]]
 transform = Transform3D(75.0686, 0, 0, 0, 75.0686, 0, 0, 0, 75.0686, 0, 0, 0)

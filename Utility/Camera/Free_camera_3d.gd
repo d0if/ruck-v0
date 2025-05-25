@@ -14,17 +14,23 @@ func _ready():
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
+			# Start dragging
 			is_dragging = true
 			drag_start = event.position
 			selection_box.position = drag_start
 			selection_box.size = Vector2.ZERO
 			selection_box.visible = true
+
+			# Deselect all currently selected nodes
+			for node in selectable_nodes:
+				if node.is_in_group("Selected"):
+					node.remove_from_group("Selected")
 		else:
+			# End dragging
 			is_dragging = false
 			selection_box.visible = false
 
-			var rect = Rect2(selection_box.position, selection_box.size)
-			rect = rect.abs()
+			var rect = Rect2(selection_box.position, selection_box.size).abs()
 
 			for node in selectable_nodes:
 				if not node is Node3D:
@@ -35,6 +41,7 @@ func _unhandled_input(event):
 						node.add_to_group("Selected")
 						print("Selected: ", node.name)
 
+			# Clear hover group
 			for node in hovered_nodes:
 				if node.is_in_group("Hover"):
 					node.remove_from_group("Hover")
