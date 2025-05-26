@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ke6fxlxk2xx0"]
+[gd_scene load_steps=10 format=3 uid="uid://ke6fxlxk2xx0"]
 
 [ext_resource type="Terrain3DMaterial" uid="uid://bje4e23kirgcg" path="res://Environments/test_terrainworld/test_terrainworld_terrain3dmaterial.res" id="1_ikvui"]
 [ext_resource type="Terrain3DAssets" uid="uid://i08qad6k60fh" path="res://Environments/test_terrainworld/test_terrainworld_terrain3dassets.res" id="2_qtr8v"]
 [ext_resource type="PackedScene" uid="uid://cs0parchc8d41" path="res://Player/test_rucker/test_rucker.tscn" id="3_tx5qi"]
+[ext_resource type="PackedScene" uid="uid://nhncunj6expn" path="res://Utility/Camera/free_camera.tscn" id="4_1twod"]
 [ext_resource type="Environment" uid="uid://cb2586nrunvi2" path="res://Materials/Rendering/test_environment.tres" id="4_tx5qi"]
 [ext_resource type="CameraAttributesPractical" uid="uid://d2jnmiyqg0la" path="res://Materials/Rendering/test_camera.tres" id="5_j3uw3"]
 [ext_resource type="PackedScene" uid="uid://b12id8l5bynxg" path="res://Assets/rock_and_tree/rock_average/rock_average.glb" id="7_67ung"]
@@ -33,6 +34,9 @@ metadata/_edit_lock_ = true
 
 [node name="TestRucker" parent="." instance=ExtResource("3_tx5qi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53328, 1.41729, -1.98723)
+
+[node name="FreeCamera" parent="." instance=ExtResource("4_1twod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53328, 3.10764, -1.98723)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.547135, -0.300391, -0.781286, -0.729561, 0.628713, 0.269183, 0.410345, 0.717276, -0.563145, 0, 15.7858, 0)

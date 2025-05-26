@@ -4515,8 +4515,6 @@ floor_max_angle = 0.823795
 floor_snap_length = 0.01
 script = ExtResource("1_cluhl")
 ANGLE_VELOCITY_PUNISHMENT = SubResource("Curve_cluhl")
-controller_p = 2.0
-controller_d = 0.0
 
 [node name="CollisionCrouch" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
