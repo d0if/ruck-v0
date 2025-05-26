@@ -2,14 +2,14 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciaqafeikjr42"
+uid="uid://c7e80w52lq7f"
 path.s3tc="res://.godot/imported/blacksmith one item_cratesandbarrels_Base_color.png-3c1d6dca2b3ea6b573bad0222bdc87a8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "e2588ee336bd86a5f0df787c3fe14385"
+"md5": "b98239c5dd7b561aa27e51436ad90345"
 }
 
 [deps]

@@ -2,14 +2,14 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcgob2gntlc3x"
+uid="uid://dh3spnktkctn7"
 path.s3tc="res://.godot/imported/blacksmith one item_DefaultMaterial_Metallic.png-DefaultMaterial_Roughness.png-17674b249f5501147055f73a7134c8a5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "d1864b0a2b49ce083c8d1434f22ce87b"
+"md5": "9abe2f88d5d5c3923c0791a015ec965f"
 }
 
 [deps]

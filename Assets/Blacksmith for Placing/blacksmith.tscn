@@ -1,20 +1,18 @@
-[gd_scene load_steps=26 format=4 uid="uid://mqeaqlh4vgu3"]
+[gd_scene load_steps=24 format=4 uid="uid://mqeaqlh4vgu3"]
 
 [ext_resource type="Script" uid="uid://o41e884ba0iu" path="res://Assets/Blacksmith for Placing/blacksmith.gd" id="1_0brej"]
-[ext_resource type="Texture2D" uid="uid://nb4p8jpov8ss" path="res://Assets/Models/blacksmith one item_DefaultMaterial_Base_color.png" id="1_igl7s"]
-[ext_resource type="Texture2D" uid="uid://bl7jmqn5bc5hk" path="res://Assets/Models/blacksmith one item_DefaultMaterial_Emissive.png" id="2_n8bg8"]
+[ext_resource type="Texture2D" uid="uid://cn7dk3b4pvwi7" path="res://Assets/Blacksmith for Placing/Blacksmithnumba4_DefaultMaterial_Base_color.png" id="1_igl7s"]
+[ext_resource type="Texture2D" uid="uid://tqy8ovklvh6" path="res://Assets/Models/blacksmith one item_DefaultMaterial_Emissive.png" id="2_n8bg8"]
 [ext_resource type="Texture2D" uid="uid://ck2vo5cft8xvs" path="res://Assets/Models/blacksmith one item_DefaultMaterial_Metallic.png" id="3_0brej"]
-[ext_resource type="Texture2D" uid="uid://b587slwqiugnm" path="res://Assets/Models/blacksmith one item_DefaultMaterial_Normal.png" id="4_o603s"]
-[ext_resource type="Texture2D" uid="uid://crj22siat413p" path="res://Assets/Models/blacksmith one item_DefaultMaterial_Base_color_6.png" id="5_c7my8"]
-[ext_resource type="Texture2D" uid="uid://dva6yoj7yr2c6" path="res://Assets/Models/blacksmith one item_DefaultMaterial_Emissive_4.png" id="6_b675q"]
-[ext_resource type="Texture2D" uid="uid://dcgob2gntlc3x" path="res://Assets/Models/blacksmith one item_DefaultMaterial_Metallic.png-DefaultMaterial_Roughness.png" id="7_seipd"]
-[ext_resource type="Texture2D" uid="uid://6xnx2hynpu64" path="res://Assets/Models/blacksmith one item_DefaultMaterial_Normal_5.png" id="8_pfvfn"]
-[ext_resource type="Texture2D" uid="uid://ciaqafeikjr42" path="res://Assets/Models/blacksmith one item_cratesandbarrels_Base_color.png" id="9_ulaix"]
-[ext_resource type="Texture2D" uid="uid://bj4cx5drxnqo6" path="res://Assets/Models/blacksmith one item_cratesandbarrels_Metallic-cratesandbarrels_Roughness.png" id="10_eg57m"]
-[ext_resource type="Texture2D" uid="uid://cvkh822f8xqtm" path="res://Assets/Models/blacksmith one item_cratesandbarrels_Normal.png" id="11_xsl4l"]
-[ext_resource type="Texture2D" uid="uid://ppdt8066bx0d" path="res://Assets/Models/blacksmith one item_weaponandfurniture_Base_color.png" id="12_jwikv"]
-[ext_resource type="Texture2D" uid="uid://cmoy0om2ua1x5" path="res://Assets/Models/blacksmith one item_weaponandfurniture_Metallic-weaponandfurniture_Roughness.png" id="13_p13lw"]
-[ext_resource type="Texture2D" uid="uid://dph38oppvw1hm" path="res://Assets/Models/blacksmith one item_weaponandfurniture_Normal.png" id="14_sxi8y"]
+[ext_resource type="Texture2D" uid="uid://cs42l5opois5j" path="res://Assets/Models/blacksmith one item_DefaultMaterial_Normal.png" id="4_o603s"]
+[ext_resource type="Texture2D" uid="uid://bppq2dqcs56ui" path="res://Assets/Models/blacksmith one item_DefaultMaterial_Base_color_6.png" id="5_c7my8"]
+[ext_resource type="Texture2D" uid="uid://rdbfb63x5qdc" path="res://Assets/Models/blacksmith one item_DefaultMaterial_Emissive_4.png" id="6_b675q"]
+[ext_resource type="Texture2D" uid="uid://dh3spnktkctn7" path="res://Assets/Models/blacksmith one item_DefaultMaterial_Metallic.png-DefaultMaterial_Roughness.png" id="7_seipd"]
+[ext_resource type="Texture2D" uid="uid://csorwvywsbm3m" path="res://Assets/Models/blacksmith one item_DefaultMaterial_Normal_5.png" id="8_pfvfn"]
+[ext_resource type="Texture2D" uid="uid://c7e80w52lq7f" path="res://Assets/Models/blacksmith one item_cratesandbarrels_Base_color.png" id="9_ulaix"]
+[ext_resource type="Texture2D" uid="uid://dfir5vgcqfq5t" path="res://Assets/Models/blacksmith one item_cratesandbarrels_Normal.png" id="11_xsl4l"]
+[ext_resource type="Texture2D" uid="uid://dgxasiujfaosn" path="res://Assets/Models/blacksmith one item_weaponandfurniture_Base_color.png" id="12_jwikv"]
+[ext_resource type="Texture2D" uid="uid://riy7kgdqamlq" path="res://Assets/Models/blacksmith one item_weaponandfurniture_Normal.png" id="14_sxi8y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxkrt"]
 resource_name = "left side"
@@ -56,9 +54,7 @@ resource_name = "blacksmithfurniture1"
 cull_mode = 2
 albedo_texture = ExtResource("9_ulaix")
 metallic = 1.0
-metallic_texture = ExtResource("10_eg57m")
 metallic_texture_channel = 2
-roughness_texture = ExtResource("10_eg57m")
 roughness_texture_channel = 1
 normal_enabled = true
 normal_texture = ExtResource("11_xsl4l")
@@ -68,9 +64,7 @@ resource_name = "blacksmithfurniture2"
 cull_mode = 2
 albedo_texture = ExtResource("12_jwikv")
 metallic = 1.0
-metallic_texture = ExtResource("13_p13lw")
 metallic_texture_channel = 2
-roughness_texture = ExtResource("13_p13lw")
 roughness_texture_channel = 1
 normal_enabled = true
 normal_texture = ExtResource("14_sxi8y")
@@ -237,7 +231,7 @@ script = ExtResource("1_0brej")
 meshes = [NodePath("Cube_340")]
 
 [node name="Cube_340" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07, 0, 0.725)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07, 0.0458057, 0.886261)
 mesh = SubResource("ArrayMesh_bxsyv")
 skeleton = NodePath("")
 

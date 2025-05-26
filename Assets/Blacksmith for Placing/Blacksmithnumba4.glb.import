@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://85o0xdae4rbg"
-path="res://.godot/imported/blacksmith one item.glb-d4673c42cff5bcd6a9ee4549c9a014a8.scn"
+uid="uid://cnfu4feqqgo6t"
+path="res://.godot/imported/Blacksmithnumba4.glb-9ee9a4dde4f77f79d0cd9c1d5c1b7c7d.scn"
 
 [deps]
 
-source_file="res://Assets/Models/blacksmith one item.glb"
-dest_files=["res://.godot/imported/blacksmith one item.glb-d4673c42cff5bcd6a9ee4549c9a014a8.scn"]
+source_file="res://Assets/Blacksmith for Placing/Blacksmithnumba4.glb"
+dest_files=["res://.godot/imported/Blacksmithnumba4.glb-9ee9a4dde4f77f79d0cd9c1d5c1b7c7d.scn"]
 
 [params]
 

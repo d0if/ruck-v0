@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj4cx5drxnqo6"
-path.s3tc="res://.godot/imported/blacksmith one item_cratesandbarrels_Metallic-cratesandbarrels_Roughness.png-d51e8ee277c7b2c9ca9d113ae9e392c4.s3tc.ctex"
+uid="uid://bgah0r3thktl1"
+path.s3tc="res://.godot/imported/blacksmith one item_DefaultMaterial_Metallic.png-DefaultMaterial_Roughness_7.png-46ad2cd10883c9bb5f3b3bf1307e76d9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "6008b9bea160dfdd8858ae4e2ce7cac4"
+"md5": "10c8d5d0caefb63bd373758d7eb66379"
 }
 
 [deps]
 
-source_file="res://Assets/Models/blacksmith one item_cratesandbarrels_Metallic-cratesandbarrels_Roughness.png"
-dest_files=["res://.godot/imported/blacksmith one item_cratesandbarrels_Metallic-cratesandbarrels_Roughness.png-d51e8ee277c7b2c9ca9d113ae9e392c4.s3tc.ctex"]
+source_file="res://Assets/Models/blacksmith one item_DefaultMaterial_Metallic.png-DefaultMaterial_Roughness_7.png"
+dest_files=["res://.godot/imported/blacksmith one item_DefaultMaterial_Metallic.png-DefaultMaterial_Roughness_7.png-46ad2cd10883c9bb5f3b3bf1307e76d9.s3tc.ctex"]
 
 [params]
 

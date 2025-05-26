@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgxasiujfaosn"
-path.s3tc="res://.godot/imported/blacksmith one item_weaponandfurniture_Base_color.png-d32f1868c0f306ef4f27cb417cd3544f.s3tc.ctex"
+uid="uid://bckm6qqjwp6v5"
+path.s3tc="res://.godot/imported/Blacksmithnumba4_DefaultMaterial_Metallic.png-DefaultMaterial_Roughness.png-444a6383de3269c2c4808198f5da0bde.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "f630af9b4c379d5a4c0782fb1a4b715f"
+"md5": "10c8d5d0caefb63bd373758d7eb66379"
 }
 
 [deps]
 
-source_file="res://Assets/Models/blacksmith one item_weaponandfurniture_Base_color.png"
-dest_files=["res://.godot/imported/blacksmith one item_weaponandfurniture_Base_color.png-d32f1868c0f306ef4f27cb417cd3544f.s3tc.ctex"]
+source_file="res://Assets/Blacksmith for Placing/Blacksmithnumba4_DefaultMaterial_Metallic.png-DefaultMaterial_Roughness.png"
+dest_files=["res://.godot/imported/Blacksmithnumba4_DefaultMaterial_Metallic.png-DefaultMaterial_Roughness.png-444a6383de3269c2c4808198f5da0bde.s3tc.ctex"]
 
 [params]
 

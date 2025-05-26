@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs42l5opois5j"
-path.s3tc="res://.godot/imported/blacksmith one item_DefaultMaterial_Normal.png-593ab01739882cb99567e0749bbe3353.s3tc.ctex"
+uid="uid://cl4jgg3w3qf5o"
+path.s3tc="res://.godot/imported/Blacksmithnumba4_weaponandfurniture_Normal.png-03f85180015fec58c21750b965c747d1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "57e95869b90b25613e6d613d15e9e97f"
+"md5": "0ca490f0e903715b0bfce001ef3e51f0"
 }
 
 [deps]
 
-source_file="res://Assets/Models/blacksmith one item_DefaultMaterial_Normal.png"
-dest_files=["res://.godot/imported/blacksmith one item_DefaultMaterial_Normal.png-593ab01739882cb99567e0749bbe3353.s3tc.ctex"]
+source_file="res://Assets/Blacksmith for Placing/Blacksmithnumba4_weaponandfurniture_Normal.png"
+dest_files=["res://.godot/imported/Blacksmithnumba4_weaponandfurniture_Normal.png-03f85180015fec58c21750b965c747d1.s3tc.ctex"]
 
 [params]
 
@@ -28,7 +28,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://Assets/Models/blacksmith one item_DefaultMaterial_Normal.png"
+roughness/src_normal="res://Assets/Blacksmith for Placing/Blacksmithnumba4_weaponandfurniture_Normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
