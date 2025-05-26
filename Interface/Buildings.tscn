@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnbwt8bj028bh"]
+
+[ext_resource type="Texture2D" uid="uid://c7jvict6h5bdp" path="res://centered blacksmith transparent.png" id="1_gl0ni"]
+[ext_resource type="Script" uid="uid://nsm8k73usn25" path="res://Interface/buildings.gd" id="1_yiv63"]
+
+[node name="User Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_yiv63")
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -81.0
+offset_right = 48.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+item_count = 1
+icon_scale = 0.13
+item_0/icon = ExtResource("1_gl0ni")
+
+[connection signal="item_selected" from="ItemList" to="." method="_on_item_list_item_selected"]
