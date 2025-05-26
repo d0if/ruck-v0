@@ -1,4 +1,4 @@
-[gd_scene load_steps=584 format=4 uid="uid://xycmanbxay3k"]
+[gd_scene load_steps=585 format=4 uid="uid://xycmanbxay3k"]
 
 [ext_resource type="Environment" uid="uid://cb2586nrunvi2" path="res://Materials/Rendering/test_environment.tres" id="1_0he6h"]
 [ext_resource type="CameraAttributesPractical" uid="uid://d2jnmiyqg0la" path="res://Materials/Rendering/test_camera.tres" id="2_frd3d"]
@@ -43,6 +43,7 @@
 [ext_resource type="Script" uid="uid://bj8kb143hsrjx" path="res://Environments/area_3d.gd" id="40_i0trt"]
 [ext_resource type="Script" uid="uid://ca17lt6dvwa81" path="res://Environments/area_3d_2.gd" id="42_0o8xb"]
 [ext_resource type="Script" uid="uid://c8o362pt8phiw" path="res://Environments/character_model_export_2.gd" id="42_jbnon"]
+[ext_resource type="PackedScene" uid="uid://deu1xfcdvpr30" path="res://Player/test_rucker/test_rucker2.tscn" id="44_52i5m"]
 
 [sub_resource type="GDScript" id="GDScript_a6aeo"]
 resource_name = "test_playworld1"
@@ -9847,3 +9848,6 @@ outline = NodePath("../Cube")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="character model export2/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.97406, -0.205515)
 shape = SubResource("CapsuleShape3D_gnjhv")
+
+[node name="TestRucker2" parent="." instance=ExtResource("44_52i5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.726731, 11.6351, -14.2409)

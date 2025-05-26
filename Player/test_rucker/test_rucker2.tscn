@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://deu1xfcdvpr30"]
+[gd_scene load_steps=57 format=4 uid="uid://deu1xfcdvpr30"]
 
 [ext_resource type="Script" uid="uid://welru4syahvt" path="res://Controllers/Player/dumb_controller.gd" id="1_cluhl"]
 [ext_resource type="Script" uid="uid://becvupbdysbl1" path="res://Player/test_rucker/test_rucker_animations.gd" id="2_2nsin"]
@@ -12,11 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://d35urg7e6p28j" path="res://sounds/sound effects/38874__swuing__footstep-grass.wav" id="10_ah7kn"]
 [ext_resource type="PackedScene" uid="uid://bxjna1mp0jmmy" path="res://Utility/Camera/fps_camera.tscn" id="11_clclu"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1vdg3"]
-friction = 0.5
-
 [sub_resource type="Curve" id="Curve_cluhl"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_78lb1"]
@@ -4509,18 +4506,17 @@ _data = {
 &"YMCA": SubResource("Animation_81y2p")
 }
 
-[node name="TestRucker" type="RigidBody3D"]
+[node name="TestRucker" type="CharacterBody3D"]
 collision_layer = 4
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
-mass = 6.487
-physics_material_override = SubResource("PhysicsMaterial_1vdg3")
-gravity_scale = 3.0
-contact_monitor = true
-max_contacts_reported = 10
+floor_max_angle = 0.823795
+floor_snap_length = 0.01
 script = ExtResource("1_cluhl")
 ANGLE_VELOCITY_PUNISHMENT = SubResource("Curve_cluhl")
+controller_p = 2.0
+controller_d = 0.0
 
 [node name="CollisionCrouch" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
@@ -4901,5 +4897,3 @@ hit_from_inside = true
 
 [node name="FpsCamera" parent="." instance=ExtResource("11_clclu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875412, 0)
-
-[connection signal="body_entered" from="JumpReset" to="." method="_on_jump_reset_body_entered"]
