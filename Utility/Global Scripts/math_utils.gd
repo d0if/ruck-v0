@@ -86,3 +86,9 @@ func cap_below_line(current: float, line_cap: float, rate: float = 0.1):
 		return approach_line(current, line_cap, rate)
 	else:
 		return current
+
+func project(input: Vector3, to: Vector3) -> Vector3:
+	if to.is_normalized():
+		#return to.dot()
+		pass
+	return Vector3(0.0,0.0,0.0)
