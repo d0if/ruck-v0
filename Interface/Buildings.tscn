@@ -4,13 +4,14 @@
 [ext_resource type="Script" uid="uid://nsm8k73usn25" path="res://Interface/buildings.gd" id="1_yiv63"]
 
 [node name="User Interface" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 script = ExtResource("1_yiv63")
 
 [node name="ItemList" type="ItemList" parent="."]
@@ -26,6 +27,7 @@ offset_right = 48.0
 offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_mode = 0
 item_count = 1
 icon_scale = 0.13
 item_0/icon = ExtResource("1_gl0ni")

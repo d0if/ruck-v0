@@ -12,6 +12,7 @@ var loadingpath: String = ""
 
 func _ready() -> void:
 	Global.set_main_level.connect(_try_set_main_level)
+	Global.main_level = $Main.get_child(0)
 	#get current main scene from editor (so we don't have to declare it in code)
 	pass #nvm, using defaultscene bool for now
 
@@ -54,5 +55,6 @@ func _set_main_level(path: String):
 	
 	var new_level = ResourceLoader.load_threaded_get(path).instantiate()
 	mainlevelcontainer.add_child(new_level)
+	Global.main_level = new_level
 	
 	DebugUtils.admin_panel_closed.emit()

@@ -60,21 +60,12 @@ func _process(delta: float) -> void:
 	
 	#need to switch camera modes if transition value passes the threshold
 	if abs(transition) > TRANSITION_MINIMUM_SCROLLS * TRANSITION_TICK:
-		if transition < 0: #negative transition, use closer-up cam. note that ZFPS == 0, ZTPS == 1, etc
-			if zoom_level != ZOOM_FPS:
-				zoom_level -= 1
-				zoom_input = ZOOM_FLOAT_MAX[zoom_level]
-		else:
-			if zoom_level != ZOOM_RTS:
-				zoom_level += 1
-				zoom_input = ZOOM_FLOAT_MIN[zoom_level]
 		
-		if zoom_level != zoom_level_old:
-			zoom_accel = 0.1
-			transition = 0.0
-			transition_cooldown = TRANSITION_MINIMUM_COOLDOWN
-			zoom_level_changed.emit(zoom_level, zoom_level_old)
-			zoom_level_old = zoom_level
+		if transition < 0: #negative transition, use closer-up cam. note that ZFPS == 0, ZTPS == 1, etc
+			zoom_in()
+		else:
+			zoom_out()
+		
 	
 	DebugUtils.f3_main("transition cooldown", transition_cooldown)
 	DebugUtils.f3_main("zoom_input", zoom_input)
@@ -83,9 +74,34 @@ func _process(delta: float) -> void:
 	DebugUtils.f3_main("transition", transition)
 	DebugUtils.f3_main("zoom_level", zoom_level)
 
+func zoom_in():
+	if zoom_level != ZOOM_FPS:
+		zoom_level -= 1
+		zoom_input = ZOOM_FLOAT_MAX[zoom_level]
+		_handle_zoom_change()
+
+func zoom_out():
+	if zoom_level != ZOOM_RTS:
+		zoom_level += 1
+		zoom_input = ZOOM_FLOAT_MIN[zoom_level]
+		_handle_zoom_change()
+
+func _handle_zoom_change():
+	if zoom_level != zoom_level_old:
+		zoom_accel = 0.1
+		transition = 0.0
+		transition_cooldown = TRANSITION_MINIMUM_COOLDOWN
+		zoom_level_changed.emit(zoom_level, zoom_level_old)
+		zoom_level_old = zoom_level
+
 
 #ENTIRE purpose of this function right now is to handle zoom transitions between level
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action("game_zoom_in") and event.is_pressed():
+		zoom_in()
+	if event.is_action("game_zoom_out") and event.is_pressed():
+		zoom_out()
+	
 	if event is InputEventMouseButton:
 		if (event.button_index == MOUSE_BUTTON_WHEEL_DOWN or event.button_index == MOUSE_BUTTON_WHEEL_UP):
 			if event.pressed:

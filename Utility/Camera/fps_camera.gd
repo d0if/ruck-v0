@@ -128,6 +128,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _handle_zoom_change(new_state, old_state) -> void:
 	match new_state:
 		CameraUtils.ZOOM_FPS, CameraUtils.ZOOM_TPS:
+			Global.set_scene_default_mousemode.emit(Input.MOUSE_MODE_CAPTURED)
 			dist.position.z = Vector3(height.global_position - CameraUtils.global_cam_position).length()
 			camera.make_current()
 			camera.set_cull_mask_value(3, new_state == CameraUtils.ZOOM_TPS) #player is on layer 3, hide it in fps

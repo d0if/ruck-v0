@@ -2,7 +2,7 @@ extends Control
 
 @onready var blacksmith = preload("res://Assets/Blacksmith for Placing/blacksmith.tscn")
 
-var camera
+#var camera
 var instance
 var placing = false
 var range = 1000
@@ -12,8 +12,8 @@ var rotation_speed = 90.0  # degrees per second
 
 @onready var item_list = $ItemList
 
-func _ready():
-	camera = get_viewport().get_camera_3d()
+func _ready() -> void:
+	CameraUtils.zoom_level_changed.connect(_on_zoom_level_changed)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click") and can_place:
@@ -38,13 +38,16 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if placing:
 		var mouse_pos = get_viewport().get_mouse_position()
-		var ray_origin = camera.project_ray_origin(mouse_pos)
-		var ray_end = ray_origin + camera.project_ray_normal(mouse_pos) * range
-		var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
-		var collision = camera.get_world_3d().direct_space_state.intersect_ray(query)
-		if collision:
-			instance.transform.origin = collision.position
-			can_place = instance.check_placement()
+		var current_camera = get_viewport().get_camera_3d()
+		if current_camera:
+			var ray_origin = current_camera.project_ray_origin(mouse_pos)
+			var ray_end = ray_origin + current_camera.project_ray_normal(mouse_pos) * range
+			# continue using current_camera...
+			var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
+			var collision =  current_camera.get_world_3d().direct_space_state.intersect_ray(query)
+			if collision:
+				instance.transform.origin = collision.position
+				can_place = instance.check_placement()
 
 		# Smooth freeform rotation while holding Q or E
 		if Input.is_action_pressed("rotate_left"):
@@ -53,6 +56,13 @@ func _process(delta: float) -> void:
 			current_rotation_y += rotation_speed * delta
 
 		instance.rotation.y = deg_to_rad(current_rotation_y)
+
+func _on_zoom_level_changed(new_level, old_level):
+	match new_level:
+		CameraUtils.ZOOM_FREE:
+			self.visible = true
+		_:
+			self.visible = false
 
 func _on_item_list_item_selected(index: int) -> void:
 	if placing:
@@ -68,4 +78,4 @@ func _on_item_list_item_selected(index: int) -> void:
 
 		current_rotation_y = 0.0  # Reset rotation when placing a new building
 		placing = true
-		get_parent().add_child(instance)
+		Global.main_level.add_child(instance)

@@ -4,6 +4,7 @@ const AUTO_CONVERT_SCENES_TO_MAIN_TREE = true
 var attempted_filepath: StringName = ""
 
 signal set_main_level(path: String, preload_started: bool)
+var main_level: Object
 
 signal set_scene_default_mousemode(mousemode: Input.MouseMode)
 var default_scene_mousemode: Input.MouseMode = Input.MOUSE_MODE_VISIBLE
