@@ -236,27 +236,34 @@ mesh = SubResource("ArrayMesh_bxsyv")
 skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="Cube_340"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.085, 7.73, -0.72)
+transform = Transform3D(0.71, 0, 0, 0, 0.71, 0, 0, 0, 0.71, 2.0035, 6.95617, -0.72)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_340/Area3D"]
 transform = Transform3D(15.48, 0, 0, 0, 15.48, 0, 0, 0, 15.48, 0, 0, 0)
 shape = SubResource("BoxShape3D_k7d62")
 
 [node name="Ray1" type="RayCast3D" parent="Cube_340"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9437, 0.17, 5.44668)
-target_position = Vector3(0, -1.155, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9437, 0.458, 5.44668)
+target_position = Vector3(0, -2.845, 0)
+collide_with_areas = true
 
 [node name="Ray2" type="RayCast3D" parent="Cube_340"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.94, 0.17, -8.35834)
-target_position = Vector3(0, -1.155, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.94, 0.458, -8.35834)
+target_position = Vector3(0, -2.845, 0)
+hit_from_inside = true
+collide_with_areas = true
 
 [node name="Ray3" type="RayCast3D" parent="Cube_340"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.54122, 0.17, -8.39867)
-target_position = Vector3(0, -1.155, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.54122, 0.458, -8.39867)
+target_position = Vector3(0, -2.845, 0)
+hit_from_inside = true
+collide_with_areas = true
 
 [node name="Ray4" type="RayCast3D" parent="Cube_340"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.51809, 0.17, 6.93662)
-target_position = Vector3(0, -1.155, 0)
+target_position = Vector3(0, -2.845, 0)
+hit_from_inside = true
+collide_with_areas = true
 
 [node name="StaticBody3D_1" type="StaticBody3D" parent="Cube_340"]
 

@@ -8260,7 +8260,6 @@ mesh = SubResource("ArrayMesh_l3sww")
 skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="base play world/Plane" groups=["Grass"]]
-collision_layer = 3
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="base play world/Plane/StaticBody3D" groups=["Grass"]]
@@ -8560,6 +8559,7 @@ mesh = ExtResource("12_3dqps")
 
 [node name="multimesh grass" type="MultiMeshInstance3D" parent="base play world"]
 transform = Transform3D(-0.999822, 0.0188659, 0, -0.0188659, -0.999822, 0, 0, 0, 1, 0, 18.91, 0)
+layers = 3
 cast_shadow = 0
 multimesh = SubResource("MultiMesh_308o1")
 
