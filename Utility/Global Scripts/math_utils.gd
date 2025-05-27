@@ -87,8 +87,8 @@ func cap_below_line(current: float, line_cap: float, rate: float = 0.1):
 	else:
 		return current
 
-func project(input: Vector3, to: Vector3) -> Vector3:
-	if to.is_normalized():
-		#return to.dot()
-		pass
-	return Vector3(0.0,0.0,0.0)
+func projected(input: Vector3, to: Vector3) -> Vector3:
+	return (to.dot(input) * to) / to.length_squared()
+
+func orthogonal(input: Vector3, to: Vector3) -> Vector3:
+	return input - projected(input, to)
